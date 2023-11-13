@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "6KJP4lXjFnqoU6mskRvxVXPI7I4cKuQwj3Obc+aW6KrCOP1tFStpsg7igTLPbnmjnRXerh8PsTnyfiY/DXQ0DQ==",
+  "dgSpecHash": "CuW2osIi9zAH1/RH4aHUoVwz7d7k5XqirVWPeer4ELFcCCPHEVckcHyCVj0BwKZzrEt16Y3TMrHvHSGKmraTlQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Andre\\Desktop\\Duel2D\\Client\\Duel2D\\Duel2D.csproj",
+  "projectFilePath": "D:\\colzani_andrea\\gioco\\Client\\Duel2D\\Duel2D.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Andre\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\.nupkg.metadata",
-    "C:\\Users\\Andre\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\colzani_andrea\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\colzani_andrea\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }

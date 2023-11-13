@@ -101,24 +101,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andre\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\colzani_andrea\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andre\\Desktop\\Duel2D\\Client\\Duel2D\\Duel2D.csproj",
+      "projectUniqueName": "D:\\colzani_andrea\\gioco\\Client\\Duel2D\\Duel2D.csproj",
       "projectName": "Duel2D",
-      "projectPath": "C:\\Users\\Andre\\Desktop\\Duel2D\\Client\\Duel2D\\Duel2D.csproj",
-      "packagesPath": "C:\\Users\\Andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andre\\Desktop\\Duel2D\\Client\\Duel2D\\obj\\",
+      "projectPath": "D:\\colzani_andrea\\gioco\\Client\\Duel2D\\Duel2D.csproj",
+      "packagesPath": "C:\\Users\\colzani_andrea\\.nuget\\packages\\",
+      "outputPath": "D:\\colzani_andrea\\gioco\\Client\\Duel2D\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\colzani_andrea\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -169,7 +164,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
