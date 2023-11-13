@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Threading;
 
 namespace Duel2D
 {
@@ -10,7 +11,9 @@ namespace Duel2D
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private int schermata = 0;
-        
+        public tcpClass clientTcp { get; set; }
+        public bool con = false;
+
         Screen screen;
 
         public Game1()
@@ -26,7 +29,18 @@ namespace Duel2D
         protected override void Initialize()
         {
             screen = new Screen();
+     
+            /*
+            Thread connectionThread = new Thread(ConnessioneServer);
+            connectionThread.Start();
+            */
             base.Initialize();
+        }
+
+        private void ConnessioneServer()
+        {
+            clientTcp = new tcpClass("172.16.102.109", 666);
+            con = clientTcp.connettiServer();
         }
 
         protected override void LoadContent()
@@ -40,7 +54,8 @@ namespace Duel2D
             if (schermata == 0 && Keyboard.GetState().GetPressedKeys().Length > 0)    //quando l'utente preme un qualsiasi tasto dalla schermata iniziale passa al menu
                 schermata = 1;
 
-
+            if (schermata == 1)
+                screen.Update();
             base.Update(gameTime);
         }
 

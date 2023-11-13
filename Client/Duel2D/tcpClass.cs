@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -23,21 +24,41 @@ namespace Duel2D
             this.port = port;
         }
 
-        public void connettiServer()
+        public bool connettiServer()
         {
-            client = new TcpClient(ipAdress, port);
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
-            stream = client.GetStream();
+            Byte[] data;
+            try
+            {
+                client = new TcpClient(ipAdress, port);
+                
+                data = System.Text.Encoding.ASCII.GetBytes(msg);
+                stream = client.GetStream();
+
+                data = new Byte[256];                           //RICEVI
+                String responseData = String.Empty;
+                Int32 bytes = stream.Read(data, 0, data.Length);
+                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                Console.WriteLine("Received: {0}", responseData);
+            }
+            catch (SocketException e)
+            {
+                return false;
+            }
+            catch (IOException ex)
+            {
+                return false;
+            }
+            catch (ObjectDisposedException ex)
+            {
+                return false;
+            }
+
 
             //stream.Write(data, 0, data.Length);           INVIA
             //Console.WriteLine("Sent: {0}", msg);
 
 
-            data = new Byte[256];                           //RICEVI
-            String responseData = String.Empty;
-            Int32 bytes = stream.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-            Console.WriteLine("Received: {0}", responseData);
+            
 
             /*
             Thread receiveThread = new Thread(riceviMessaggio);
@@ -58,10 +79,10 @@ namespace Duel2D
 
 
             /*
-             * stream.Close();
+                * stream.Close();
             client.Close();
-             * 
-             * 
+                * 
+                * 
             try
             {
                 client = new TcpClient(ipAdress, port);
@@ -80,6 +101,7 @@ namespace Duel2D
                 Console.WriteLine("Exception: " + e);
             }
             */
+            return true;
         }
 
         public void riceviMessaggio()

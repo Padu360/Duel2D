@@ -4,12 +4,16 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/colzani_andrea/gioco/Client/Duel2D/Content/fAll.spritefont</File>
-    <File>D:/colzani_andrea/gioco/Client/Duel2D/Content/nome2.png</File>
-    <File>D:/colzani_andrea/gioco/Client/Duel2D/Content/sIniziale.png</File>
-    <File>D:/colzani_andrea/gioco/Client/Duel2D/Content/sMenu.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/fAll.spritefont</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/nome2.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/serverOff.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/serverOn.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/sIniziale.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/sMenu.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
