@@ -26,4 +26,9 @@ public class TCPServerMOD {
         clientSocket.close();
         serverSocket.close();
     }
+
+    public String ricevi() throws IOException {
+        String str = in.readLine();
+        return str;
+    }
 }
