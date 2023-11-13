@@ -1,4 +1,4 @@
-## Getting Started
+## Server del progetto Duel2d
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
