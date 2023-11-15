@@ -6,22 +6,59 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Duel2D
 {
     public class tcpClass
     {
+        public Texture2D serveron { get; set; }
+        public Texture2D serveroff { get; set; }
+
         private static TcpClient client;
         private static NetworkStream stream;
         private static bool isRunning = true;
         private string ipAdress;
         private int port;
         private string msg = "ciao";
+        private bool connection = false;
+        private bool t = false;
 
         public tcpClass(string ipAddress, int port)
         {
             this.ipAdress = ipAddress;
             this.port = port;
+        }
+
+        public void Update()
+        {
+            if (!connection && !t)
+            {
+                Thread connectionThread = new Thread(ConnessioneServer);
+                connectionThread.Start();
+                t = true;
+            }
+        }
+
+        private void ConnessioneServer()
+        {
+            connection = this.connettiServer();
+            if (!connection) { t = false; }
+        }
+
+        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
+            serveron = content.Load<Texture2D>("serverOn");
+            serveroff = content.Load<Texture2D>("serverOff");
+        }
+
+        public void DrawStatus(SpriteBatch spriteBatch)
+        {
+            if (connection)
+                spriteBatch.Draw(serveron, new Rectangle(7, 1, 93, 38), Color.White);
+            else
+                spriteBatch.Draw(serveroff, new Rectangle(7, 1, 93, 38), Color.White);
         }
 
         public bool connettiServer()
@@ -139,25 +176,5 @@ namespace Duel2D
                 Console.WriteLine("Exception: " + e);
             }
         }
-
-        /*
-        static void Main()
-        {
-            string serverIP = "127.0.0.1"; // Indirizzo IP del server
-            int serverPort = 8080; // Porta del server
-
-            connettiServer();
-
-            // Esempio di invio di un messaggio al server
-            while (isRunning)
-            {
-                string message = Console.ReadLine();
-                SendMessage(message);
-            }
-
-            stream.Close();
-            client.Close();
-        }
-        */
     }
 }

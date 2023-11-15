@@ -4,14 +4,42 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/cLeft.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/cRight.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/fAll.spritefont</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/fontNome.spritefont</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/giocaBase.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/giocaClick.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/nome2.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/nomeVuoto.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/serverOff.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/serverOn.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/sIniziale.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/sMenu.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/SmileyWalk.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/soldato1.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/soldato2.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/soldato3.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/soldato5.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/soldato6.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/test.bmp</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/test2.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using System.Reflection.Metadata;
 using System.Net.Sockets;
 using System.Threading;
+using Microsoft.Xna.Framework.Input;
 
 namespace Duel2D
 {
@@ -15,30 +16,29 @@ namespace Duel2D
     {
         public Texture2D sIniziale { get; set; }
         public Texture2D sMenu { get; set; }
-        public Texture2D sNome { get; set; }
-        public Texture2D serveron { get; set; }
-        public Texture2D serveroff { get; set; }
         public SpriteFont fAll { get; set; }
         public tcpClass clientTcp { get; set; }
+        public menu menu { get; set; }
+        public giocatore giocatore { get; set; }
+        
 
         private float opacitaTI = 1f;
         private bool sensoOpacita = true;
-        bool connection = false;
-        bool t = false;
+        
 
         public Screen()
         {
             clientTcp = new tcpClass("127.0.0.1", 666);
+            menu = new menu();
         }
 
         public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
         {
             sIniziale = content.Load<Texture2D>("sIniziale");
             sMenu = content.Load<Texture2D>("sMenu");
-            sNome = content.Load<Texture2D>("nome2");
-            serveron = content.Load<Texture2D>("serverOn");
-            serveroff = content.Load<Texture2D>("serverOff");
             fAll = content.Load<SpriteFont>("fAll");
+            clientTcp.carica(content);
+            menu.carica(content);
         }
 
         public void unload()
@@ -46,14 +46,20 @@ namespace Duel2D
 
         }
 
-        public void Update()
+        public int Update(GameTime gameTime)
         {
-            if (!connection && !t)
+            clientTcp.Update();
+            
+
+            //if menu update = 2 allora salva giocatore, getGiocatore
+
+            int nr = menu.Update(gameTime);
+            if(nr == 2)
             {
-                Thread connectionThread = new Thread(ConnessioneServer);
-                connectionThread.Start();
-                t = true;
+                giocatore = menu.getGiocatore();
+                return 2;
             }
+            return nr;
         }
 
         public void animazioneTesto()
@@ -90,27 +96,23 @@ namespace Duel2D
 
         public void DrawMenu(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
             spriteBatch.Draw(sMenu, new Rectangle(0, 0, 1200, 800), Color.White);
+            clientTcp.DrawStatus(spriteBatch);
 
-            if (connection) 
-                spriteBatch.Draw(serveron, new Rectangle(7, 1, 93, 38), Color.White);
-            else
-                spriteBatch.Draw(serveroff, new Rectangle(7, 1, 93, 38), Color.White);
+            menu.DrawMenu(spriteBatch);
+            
 
-            spriteBatch.Draw(sNome, new Rectangle(500, 100, 190, 80), Color.White);
             spriteBatch.End();
-        }
-
-        private void ConnessioneServer()
-        {
-            connection = clientTcp.connettiServer();
-            if(!connection) { t = false;  }
         }
 
         public void DrawCaricamento(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(sIniziale, new Rectangle(0, 0, 1200, 800), Color.White);
+            spriteBatch.DrawString(fAll, "premi un qualsiasi pulsante per continuare", new Vector2(250, 620), Color.White * opacitaTI);
+            spriteBatch.End();
         }
     }
 }

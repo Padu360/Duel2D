@@ -30,17 +30,7 @@ namespace Duel2D
         {
             screen = new Screen();
      
-            /*
-            Thread connectionThread = new Thread(ConnessioneServer);
-            connectionThread.Start();
-            */
             base.Initialize();
-        }
-
-        private void ConnessioneServer()
-        {
-            clientTcp = new tcpClass("172.16.102.109", 666);
-            con = clientTcp.connettiServer();
         }
 
         protected override void LoadContent()
@@ -51,11 +41,12 @@ namespace Duel2D
 
         protected override void Update(GameTime gameTime)
         {
-            if (schermata == 0 && Keyboard.GetState().GetPressedKeys().Length > 0)    //quando l'utente preme un qualsiasi tasto dalla schermata iniziale passa al menu
+            if (schermata == 0 && Keyboard.GetState().GetPressedKeys().Length > 0 || Mouse.GetState().LeftButton == ButtonState.Pressed || Mouse.GetState().RightButton == ButtonState.Pressed)    //quando l'utente preme un qualsiasi tasto (anche del mouse) dalla schermata iniziale passa al menu
                 schermata = 1;
 
             if (schermata == 1)
-                screen.Update();
+                schermata = screen.Update(gameTime);
+            
             base.Update(gameTime);
         }
 
@@ -68,6 +59,10 @@ namespace Duel2D
             else if (schermata == 1)
             {
                 screen.DrawMenu(spriteBatch);
+            }
+            else if (schermata == 2)
+            {
+                screen.DrawCaricamento(spriteBatch);
             }
 
             base.Draw(gameTime);
