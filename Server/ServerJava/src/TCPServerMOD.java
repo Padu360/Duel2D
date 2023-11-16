@@ -6,11 +6,20 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TCPServerMOD {
-    private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
+    public ServerSocket serverSocket;
+    public Socket clientSocket;
+    public PrintWriter out;
+    public BufferedReader in;
+    public String nomeClient1;
+    public String nomeClient2;
 
+    /**
+     * Attende richiesta di connessione e invia messaggio
+     * se la connessione è stabilita
+     * 
+     * @param port porta del server
+     * @throws IOException
+     */
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
