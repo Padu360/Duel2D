@@ -15,5 +15,6 @@ public class ThreadConnessione extends Thread {
             e.printStackTrace();
         }
 
+        server.out.println("Test messaggio thread");
     }
 }
