@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/caricamento.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/cLeft.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/cRight.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/fAll.spritefont</File>
@@ -12,6 +13,7 @@
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/giocaClick.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/nome2.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/nomeVuoto.png</File>
+    <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/sCaricamento.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/serverOff.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/serverOn.png</File>
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/sIniziale.png</File>
@@ -26,6 +28,8 @@
     <File>C:/Users/Andre/Desktop/gioco/Client/Duel2D/Content/test2.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

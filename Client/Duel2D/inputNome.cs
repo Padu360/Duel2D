@@ -84,11 +84,11 @@ namespace Duel2D
             } else if(statoCasella == 2)
             {
                 spriteBatch.Draw(sNomeVuota, new Rectangle(480, 120, 240, 85), Color.White * 0.96f);
-                spriteBatch.DrawString(fAll, nome, new Vector2(505, 122), Color.Black);
+                spriteBatch.DrawString(fAll, nome, new Vector2(505, 142), Color.Black);
             } else if(statoCasella == 3)
             {
                 spriteBatch.Draw(sNomeVuota, new Rectangle(480, 120, 240, 85), Color.White * 0.84f);
-                spriteBatch.DrawString(fAll, nome, new Vector2(505, 122), Color.Black * 0.9f);
+                spriteBatch.DrawString(fAll, nome, new Vector2(505, 142), Color.Black * 0.9f);
             }
         }
 

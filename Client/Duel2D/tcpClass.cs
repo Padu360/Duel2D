@@ -24,6 +24,8 @@ namespace Duel2D
         private string msg = "ciao";
         private bool connection = false;
         private bool t = false;
+        private bool inviando = false;
+        private bool ricevendo = false;
 
         public tcpClass(string ipAddress, int port)
         {
@@ -141,28 +143,89 @@ namespace Duel2D
             return true;
         }
 
-        public void riceviMessaggio()
+        public string ricevi()
         {
-            while (isRunning)
+            try
             {
-                try
-                {
-                    byte[] receivedBytes = new byte[1024];
-                    int byteCount = stream.Read(receivedBytes, 0, receivedBytes.Length);
+                byte[] receivedBytes = new byte[1024];
+                int byteCount = stream.Read(receivedBytes, 0, receivedBytes.Length);
 
-                    if (byteCount > 0)
-                    {
-                        string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
-                        Console.WriteLine("Server: " + receivedMessage);
-                    }
-                }
-                catch (Exception e)
+                if (byteCount > 0)
                 {
-                    Console.WriteLine("Exception: " + e);
-                    isRunning = false;
+                    string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
+                    return receivedMessage;
                 }
+                return null;
+            }
+            catch (SocketException e)
+            {
+                return null;
+            }
+            
+
+            /* da implementare thread
+            if (!ricevendo)
+            {
+                Thread connectionThread = new Thread(riceviMessaggio);
+                connectionThread.Start();
+            }
+            return null;
+            */
+        }
+
+        public void invia(string msg)
+        {
+            try
+            {
+                byte[] data = Encoding.ASCII.GetBytes(msg);
+                stream.Write(data, 0, data.Length);
+            } catch (SocketException e)
+            {
+
             }
         }
+
+
+        private string riceviMessaggio()
+        {
+            try
+            {
+                byte[] receivedBytes = new byte[1024];
+                int byteCount = stream.Read(receivedBytes, 0, receivedBytes.Length);
+
+                if (byteCount > 0)
+                {
+                    string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
+                    return receivedMessage;
+                }
+                return null;
+            }
+            catch (SocketException e)
+            {
+                return null;
+            }
+        }
+
+        public bool isRicevendo()
+        {
+            return ricevendo;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void inviaMessaggio(string message)
         {

@@ -14,8 +14,8 @@ namespace Duel2D
     {
         public inputNome inputNome { get; set; }
         public giocatore giocatore { get; set; }
-        public soldato soldato1 { get; set; }
-        public soldato soldato2 { get; set; }
+        public animazione soldato1 { get; set; }
+        public animazione soldato2 { get; set; }
 
         public Texture2D tso1 { get; set; }
         public Texture2D tso2 { get; set; }
@@ -27,6 +27,7 @@ namespace Duel2D
         public int statoCasella = 0;
         public int selezioneSoldato = 0;
         public double count;
+        public bool gioca = false;
     
         public menu() { 
             inputNome = new inputNome();
@@ -41,12 +42,12 @@ namespace Duel2D
             cRight = content.Load<Texture2D>("cRight");
 
             tso1 = content.Load<Texture2D>("soldato5");
-            soldato1 = new soldato(tso1, 1, 4);
+            soldato1 = new animazione(tso1, 1, 4, 10, 150);
             tso2 = content.Load<Texture2D>("soldato6");
-            soldato2 = new soldato(tso2, 1, 4);
+            soldato2 = new animazione(tso2, 1, 4, 10, 150);
         }
 
-        public int Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             inputNome.Update();
             MouseState mouseState = Mouse.GetState();
@@ -61,7 +62,7 @@ namespace Duel2D
                 if (mouseState.LeftButton == ButtonState.Pressed && inputNome.isSetName())
                 {
                     statoCasella = 2;
-                    return 2;
+                    gioca = true;
                 }
             }
             else
@@ -104,8 +105,6 @@ namespace Duel2D
             soldato1.Update(gameTime);
             soldato2.Update(gameTime);
             //--------------------------------------------------------------
-
-            return 1;
         }
 
         public void DrawMenu(SpriteBatch spriteBatch)
@@ -118,9 +117,9 @@ namespace Duel2D
             spriteBatch.Draw(cRight, new Rectangle(690, 450, 80, 80), Color.White);
 
             if (selezioneSoldato == 0)
-                soldato1.DrawIdle(spriteBatch, new Vector2(445, 295));
+                soldato1.Draw(spriteBatch, new Vector2(445, 295));
             if (selezioneSoldato == 1)
-                soldato2.DrawIdle(spriteBatch, new Vector2(445, 295));
+                soldato2.Draw(spriteBatch, new Vector2(445, 295));
 
 
             //draw pulsante gioca
@@ -137,6 +136,11 @@ namespace Duel2D
         public giocatore getGiocatore()
         {
             return new giocatore(inputNome.getNome(), selezioneSoldato);
+        }
+
+        public bool isGioca()
+        {
+            return gioca;
         }
     }
 }

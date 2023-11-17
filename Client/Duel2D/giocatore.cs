@@ -12,6 +12,7 @@ namespace Duel2D
         public int nTexture;
         public int x;
         public int y;
+        public string comando;
 
         public giocatore()
         {
@@ -28,6 +29,25 @@ namespace Duel2D
             this.y = 0;
         }
 
-       
+        public void update()
+        {
+
+        }
+
+        public string toCsvAll()      //invio le informazioni base del giocatore, quindi quando effettuo la prima connessione al server
+        {
+            return nome + ";" + nTexture + ";";
+        }
+
+        public string toCsv()         //invio solo le informazioni di update durante la partita come x, y e comando
+        {
+            return x + ";" + y + ";" + comando;
+        }
+
+        public static giocatore toGiocatore(string str)
+        {
+            string[] vet = str.Split(";");
+            return new giocatore(vet[0], int.Parse(vet[1]));
+        }
     }
 }

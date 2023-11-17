@@ -14,16 +14,23 @@ namespace Duel2D
 {
     internal class Screen
     {
+        public int schermata = 0;
         public Texture2D sIniziale { get; set; }
         public Texture2D sMenu { get; set; }
+        public Texture2D sCaricamento { get; set; }
+        public Texture2D ruotaCaricamento { get; set; }
         public SpriteFont fAll { get; set; }
         public tcpClass clientTcp { get; set; }
         public menu menu { get; set; }
         public giocatore giocatore { get; set; }
+        public giocatore avversario { get; set; }
+        public animazione caricamento { get; set; }
         
 
-        private float opacitaTI = 1f;
+        private float opacitaTI = 0.1f;
         private bool sensoOpacita = true;
+        private int nr = 1;
+        private int i = 0;
         
 
         public Screen()
@@ -36,9 +43,12 @@ namespace Duel2D
         {
             sIniziale = content.Load<Texture2D>("sIniziale");
             sMenu = content.Load<Texture2D>("sMenu");
+            sCaricamento = content.Load<Texture2D>("sCaricamento");
+            ruotaCaricamento = content.Load<Texture2D>("caricamento");
             fAll = content.Load<SpriteFont>("fAll");
             clientTcp.carica(content);
             menu.carica(content);
+            caricamento = new animazione(ruotaCaricamento, 1 , 5, 2, 220);
         }
 
         public void unload()
@@ -46,20 +56,23 @@ namespace Duel2D
 
         }
 
-        public int Update(GameTime gameTime)
+        public void updateStart(GameTime gameTime)
+        {
+
+        }
+
+        public void updateMenu(GameTime gameTime)
         {
             clientTcp.Update();
-            
+            menu.Update(gameTime);
+            giocatore = menu.getGiocatore();
+            if(menu.isGioca())
+                schermata = 2;
+        }
 
-            //if menu update = 2 allora salva giocatore, getGiocatore
-
-            int nr = menu.Update(gameTime);
-            if(nr == 2)
-            {
-                giocatore = menu.getGiocatore();
-                return 2;
-            }
-            return nr;
+        public void updateCaricamento(GameTime gameTime)
+        {
+            caricamento.Update(gameTime);
         }
 
         public void animazioneTesto()
@@ -109,10 +122,26 @@ namespace Duel2D
 
         public void DrawCaricamento(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(sIniziale, new Rectangle(0, 0, 1200, 800), Color.White);
-            spriteBatch.DrawString(fAll, "premi un qualsiasi pulsante per continuare", new Vector2(250, 620), Color.White * opacitaTI);
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            spriteBatch.Draw(sCaricamento, new Rectangle(0, 0, 1200, 800), Color.White * 0.16f);
+            caricamento.Draw(spriteBatch, new Vector2(552, 352));
+
+            clientTcp.invia(giocatore.toCsv());
+            if(!clientTcp.isRicevendo())
+                avversario = giocatore.toGiocatore(clientTcp.ricevi());
+
             spriteBatch.End();
+        }
+
+        internal int getSchermata()
+        {
+            return schermata;
+        }
+
+        internal int setSchermata(int x)
+        {
+            schermata = x;
+            return schermata;
         }
     }
 }

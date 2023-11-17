@@ -41,12 +41,23 @@ namespace Duel2D
 
         protected override void Update(GameTime gameTime)
         {
-            if (schermata == 0 && Keyboard.GetState().GetPressedKeys().Length > 0 || Mouse.GetState().LeftButton == ButtonState.Pressed || Mouse.GetState().RightButton == ButtonState.Pressed)    //quando l'utente preme un qualsiasi tasto (anche del mouse) dalla schermata iniziale passa al menu
-                schermata = 1;
+            if (schermata == 0 && (Keyboard.GetState().GetPressedKeys().Length > 0 || Mouse.GetState().LeftButton == ButtonState.Pressed || Mouse.GetState().RightButton == ButtonState.Pressed))
+            {   //quando l'utente preme un qualsiasi tasto (anche del mouse) dalla schermata iniziale passa al menu
+                screen.updateStart(gameTime);
+                schermata = screen.setSchermata(1);
+            }
 
             if (schermata == 1)
-                schermata = screen.Update(gameTime);
-            
+            {
+                screen.updateMenu(gameTime);
+            }
+
+            if(schermata == 2)
+            {
+                screen.updateCaricamento(gameTime);
+            }
+
+            schermata = screen.getSchermata();
             base.Update(gameTime);
         }
 

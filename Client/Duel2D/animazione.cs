@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace Duel2D
 {
-    internal class soldato
+    internal class animazione
     {
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }
@@ -17,22 +17,25 @@ namespace Duel2D
         private int currentFrame;
         private int totalFrames;
         private double count;
+        private int ingradimento;
+        private int tUpdate;
         
 
-
-        public soldato(Texture2D texture, int rows, int columns)
+        public animazione(Texture2D texture, int rows, int columns, int ingrandimento, int tUpdate)
         {
             Texture = texture;
             Rows = rows;
             Columns = columns;
             currentFrame = 0;
             totalFrames = Rows * Columns;
+            ingradimento = ingrandimento;
+            this.tUpdate = tUpdate;
         }
 
         public void Update(GameTime gameTime)
         {
             count += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (count >= 120)
+            if (count >= tUpdate)
             {
                 currentFrame++;
                 count = 0;
@@ -41,7 +44,7 @@ namespace Duel2D
             }
         }
 
-        public void DrawIdle(SpriteBatch spriteBatch, Vector2 location)
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
@@ -49,7 +52,7 @@ namespace Duel2D
             int column = currentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 10, height * 10);
+            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * ingradimento, height * ingradimento);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
         }
