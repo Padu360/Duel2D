@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" modified="2023-11-19T20:28:25.630Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="g5gGmXROKjL_cXITWrNR" version="22.1.3" type="google">
+  <diagram name="Page-1" id="-pguzrtCS5gW9YjcOG4l">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="xMD9nZeg61SSIegEQI4G-1" value="CLIENT&lt;br&gt;&lt;br&gt;avvio schermata inizio&lt;br&gt;avvio connessione con server&lt;br&gt;avvio schermata menu&lt;br&gt;selezione nome e skin&lt;br&gt;invio richiesta per partita&lt;br&gt;scambio movimenti&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="440" width="180" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-2" value="SERVER&lt;br&gt;&lt;br&gt;avvio comunicazione con client&lt;br&gt;ricevo dati giocatore&lt;br&gt;creo obj giocatore&lt;br&gt;avvio partita&lt;br&gt;scambio informazioni tra i client" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="180" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-3" value="server" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="320" y="180" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-4" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.006;entryY=0.445;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="xMD9nZeg61SSIegEQI4G-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="370" y="190" as="sourcePoint" />
+            <mxPoint x="390" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.006;entryY=0.445;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="369" y="200.5" as="sourcePoint" />
+            <mxPoint x="520" y="199.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-6" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.006;entryY=0.445;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="369" y="221" as="sourcePoint" />
+            <mxPoint x="520" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-7" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.006;entryY=0.445;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="369" y="231" as="sourcePoint" />
+            <mxPoint x="520" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.006;entryY=0.445;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="369" y="241" as="sourcePoint" />
+            <mxPoint x="520" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-9" value="client/player" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="525" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-10" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="520" as="sourcePoint" />
+            <mxPoint x="330" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-11" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="529.5" as="sourcePoint" />
+            <mxPoint x="330" y="529.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-12" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="550" as="sourcePoint" />
+            <mxPoint x="330" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-13" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="560" as="sourcePoint" />
+            <mxPoint x="330" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-14" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="580" as="sourcePoint" />
+            <mxPoint x="330" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-15" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="590" as="sourcePoint" />
+            <mxPoint x="330" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
