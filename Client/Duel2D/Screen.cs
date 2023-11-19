@@ -35,7 +35,7 @@ namespace Duel2D
 
         public Screen()
         {
-            clientTcp = new tcpClass("127.0.0.1", 666);
+            clientTcp = new tcpClass("127.0.0.1", 9999);
             menu = new menu();
         }
 

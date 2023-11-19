@@ -13,6 +13,9 @@ public class TCPServerMOD {
     public String nomeClient1;
     public String nomeClient2;
 
+    public TCPServerMOD() {
+    }
+
     /**
      * Attende richiesta di connessione e invia messaggio
      * se la connessione è stabilita
@@ -37,7 +40,12 @@ public class TCPServerMOD {
     }
 
     public String ricevi() throws IOException {
-        String str = in.readLine();
+        String str = "";
+        do {
+            str = in.readLine();
+            System.out.println(str);
+        } while (str == "NULL");
+
         return str;
     }
 }

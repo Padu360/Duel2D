@@ -10,9 +10,9 @@ public class Giocatore {
     public Giocatore() {
     }
 
-    public Giocatore(String nome, int nTexture, int x, int y) {
+    public Giocatore(String nome, int x, int y) {
         this.nome = nome;
-        this.nTexture = nTexture;
+        // this.nTexture = nTexture;
         this.x = x;
         this.y = y;
     }
