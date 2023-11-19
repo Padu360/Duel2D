@@ -27,6 +27,8 @@ namespace Duel2D
         private bool inviando = false;
         private bool ricevendo = false;
 
+        public string msgRicevuto { get; set; }
+
         public tcpClass(string ipAddress, int port)
         {
             this.ipAdress = ipAddress;
@@ -69,7 +71,7 @@ namespace Duel2D
             try
             {
                 client = new TcpClient(ipAdress, port);
-                
+
                 data = System.Text.Encoding.ASCII.GetBytes(msg);
                 stream = client.GetStream();
 
@@ -97,7 +99,7 @@ namespace Duel2D
             //Console.WriteLine("Sent: {0}", msg);
 
 
-            
+
 
             /*
             Thread receiveThread = new Thread(riceviMessaggio);
@@ -143,7 +145,7 @@ namespace Duel2D
             return true;
         }
 
-        public string ricevi()
+        public void ricevi()
         {
             try
             {
@@ -153,15 +155,15 @@ namespace Duel2D
                 if (byteCount > 0)
                 {
                     string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
-                    return receivedMessage;
+                    msgRicevuto = receivedMessage;
                 }
-                return null;
+                msgRicevuto = "";
             }
             catch (SocketException e)
             {
-                return null;
+                msgRicevuto = "";
             }
-            
+
 
             /* da implementare thread
             if (!ricevendo)
@@ -179,7 +181,8 @@ namespace Duel2D
             {
                 byte[] data = Encoding.ASCII.GetBytes(msg);
                 stream.Write(data, 0, data.Length);
-            } catch (SocketException e)
+            }
+            catch (SocketException e)
             {
 
             }

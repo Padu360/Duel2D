@@ -20,23 +20,27 @@ namespace Duel2D
         public Texture2D sCaricamento { get; set; }
         public Texture2D ruotaCaricamento { get; set; }
         public SpriteFont fAll { get; set; }
+
         public tcpClass clientTcp { get; set; }
         public menu menu { get; set; }
+        public partita game { get; set; }
+
         public giocatore giocatore { get; set; }
         public giocatore avversario { get; set; }
         public animazione caricamento { get; set; }
-        
+
 
         private float opacitaTI = 0.1f;
         private bool sensoOpacita = true;
         private int nr = 1;
         private int i = 0;
-        
+
 
         public Screen()
         {
             clientTcp = new tcpClass("127.0.0.1", 9999);
             menu = new menu();
+            game = new partita();
         }
 
         public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
@@ -48,7 +52,8 @@ namespace Duel2D
             fAll = content.Load<SpriteFont>("fAll");
             clientTcp.carica(content);
             menu.carica(content);
-            caricamento = new animazione(ruotaCaricamento, 1 , 5, 2, 220);
+            caricamento = new animazione(ruotaCaricamento, 1, 5, 2, 220);
+            game.Carica(content);
         }
 
         public void unload()
@@ -66,13 +71,18 @@ namespace Duel2D
             clientTcp.Update();
             menu.Update(gameTime);
             giocatore = menu.getGiocatore();
-            if(menu.isGioca())
-                schermata = 2;
+            if (menu.isGioca())
+                schermata = 3;
         }
 
         public void updateCaricamento(GameTime gameTime)
         {
             caricamento.Update(gameTime);
+        }
+
+        public void updateGioco(GameTime gameTime)
+        {
+            game.Update(gameTime);
         }
 
         public void animazioneTesto()
@@ -113,9 +123,7 @@ namespace Duel2D
 
             spriteBatch.Draw(sMenu, new Rectangle(0, 0, 1200, 800), Color.White);
             clientTcp.DrawStatus(spriteBatch);
-
             menu.DrawMenu(spriteBatch);
-            
 
             spriteBatch.End();
         }
@@ -127,10 +135,15 @@ namespace Duel2D
             caricamento.Draw(spriteBatch, new Vector2(552, 352));
 
             clientTcp.invia(giocatore.toCsv());
-            if(!clientTcp.isRicevendo())
-                avversario = giocatore.toGiocatore(clientTcp.ricevi());
+            //if(!clientTcp.isRicevendo())
+            //   avversario = giocatore.toGiocatore(clientTcp.ricevi());
 
             spriteBatch.End();
+        }
+
+        public void DrawGioco(SpriteBatch spriteBatch)
+        {
+            game.Draw(spriteBatch);
         }
 
         internal int getSchermata()

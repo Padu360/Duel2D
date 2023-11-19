@@ -18,15 +18,15 @@ namespace Duel2D
         {
             this.nome = "";
             this.x = 0;
-            this.y = 0;
+            this.y = 640;
         }
 
         public giocatore(string nome, int nTexture)
         {
             this.nome = nome;
-            this.nTexture= nTexture;
+            this.nTexture = nTexture;
             this.x = 0;
-            this.y = 0;
+            this.y = 640;
         }
 
         public void update()
@@ -42,6 +42,12 @@ namespace Duel2D
         public string toCsv()         //invio solo le informazioni di update durante la partita come x, y e comando
         {
             return nome + ";" + x + ";" + y + ";" + comando;
+        }
+
+        public static giocatore toGiocatoreAll(string str)
+        {
+            string[] vet = str.Split(";");
+            return new giocatore(vet[0], int.Parse(vet[1]));
         }
 
         public static giocatore toGiocatore(string str)

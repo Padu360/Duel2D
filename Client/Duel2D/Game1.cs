@@ -29,7 +29,7 @@ namespace Duel2D
         protected override void Initialize()
         {
             screen = new Screen();
-     
+
             base.Initialize();
         }
 
@@ -52,9 +52,15 @@ namespace Duel2D
                 screen.updateMenu(gameTime);
             }
 
-            if(schermata == 2)
+            if (schermata == 2)
             {
                 screen.updateCaricamento(gameTime);
+                schermata = screen.setSchermata(1);
+            }
+
+            if (schermata == 3)
+            {
+                screen.updateGioco(gameTime);
             }
 
             schermata = screen.getSchermata();
@@ -63,7 +69,7 @@ namespace Duel2D
 
         protected override void Draw(GameTime gameTime)
         {
-            if(schermata == 0)
+            if (schermata == 0)
             {
                 screen.DrawStart(spriteBatch);
             }
@@ -74,6 +80,10 @@ namespace Duel2D
             else if (schermata == 2)
             {
                 screen.DrawCaricamento(spriteBatch);
+            }
+            else if (schermata == 3)
+            {
+                screen.DrawGioco(spriteBatch);
             }
 
             base.Draw(gameTime);
