@@ -1,1 +1,23 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/Repositories Github/Client/Duel2D/Content/caricamento.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/caricamento.xnb","TextureProcessor","Texture2DContent",1213,46165,0,1957153
+"D:/Repositories Github/Client/Duel2D/Content/cLeft.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/cLeft.xnb","TextureProcessor","Texture2DContent",7431,1048661,0,0581095
+"D:/Repositories Github/Client/Duel2D/Content/cRight.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/cRight.xnb","TextureProcessor","Texture2DContent",7594,1048661,0,0442133
+"D:/Repositories Github/Client/Duel2D/Content/fAll.spritefont","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/fAll.xnb","FontDescriptionProcessor","SpriteFontContent",2077,37919,0,1252605
+"D:/Repositories Github/Client/Duel2D/Content/fontNome.spritefont","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/fontNome.xnb","FontDescriptionProcessor","SpriteFontContent",2076,70687,0,0466178
+"D:/Repositories Github/Client/Duel2D/Content/giocaBase.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/giocaBase.xnb","TextureProcessor","Texture2DContent",2216,53285,0,0035441
+"D:/Repositories Github/Client/Duel2D/Content/giocaClick.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/giocaClick.xnb","TextureProcessor","Texture2DContent",2827,53285,0,0038191
+"D:/Repositories Github/Client/Duel2D/Content/nome2.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/nome2.xnb","TextureProcessor","Texture2DContent",2546,81685,0,0049218
+"D:/Repositories Github/Client/Duel2D/Content/nomeVuoto.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/nomeVuoto.xnb","TextureProcessor","Texture2DContent",810,81685,0,0070504
+"D:/Repositories Github/Client/Duel2D/Content/sCaricamento.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/sCaricamento.xnb","TextureProcessor","Texture2DContent",5739,3840085,0,1504441
+"D:/Repositories Github/Client/Duel2D/Content/serverOff.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/serverOff.xnb","TextureProcessor","Texture2DContent",947,12265,0,0040672
+"D:/Repositories Github/Client/Duel2D/Content/serverOn.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/serverOn.xnb","TextureProcessor","Texture2DContent",986,12265,0,0050861
+"D:/Repositories Github/Client/Duel2D/Content/sIniziale.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/sIniziale.xnb","TextureProcessor","Texture2DContent",24372,3840085,0,1325702
+"D:/Repositories Github/Client/Duel2D/Content/sMenu.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/sMenu.xnb","TextureProcessor","Texture2DContent",1091082,3840085,0,1387158
+"D:/Repositories Github/Client/Duel2D/Content/SmileyWalk.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/SmileyWalk.xnb","TextureProcessor","Texture2DContent",40026,262229,0,0294148
+"D:/Repositories Github/Client/Duel2D/Content/soldato1.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/soldato1.xnb","TextureProcessor","Texture2DContent",8801,245845,0,0159221
+"D:/Repositories Github/Client/Duel2D/Content/soldato2.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/soldato2.xnb","TextureProcessor","Texture2DContent",814,14229,0,0023949
+"D:/Repositories Github/Client/Duel2D/Content/soldato3.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/soldato3.xnb","TextureProcessor","Texture2DContent",918,20053,0,0024119
+"D:/Repositories Github/Client/Duel2D/Content/soldato5.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/soldato5.xnb","TextureProcessor","Texture2DContent",1009,20821,0,0030313
+"D:/Repositories Github/Client/Duel2D/Content/soldato6.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/soldato6.xnb","TextureProcessor","Texture2DContent",949,20821,0,0043387
+"D:/Repositories Github/Client/Duel2D/Content/test.bmp","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/test.xnb","TextureProcessor","Texture2DContent",1554,2085,0,0118231
+"D:/Repositories Github/Client/Duel2D/Content/test2.png","D:/Repositories Github/Client/Duel2D/Content/bin/DesktopGL/Content/test2.xnb","TextureProcessor","Texture2DContent",125745,1278037,0,0437152

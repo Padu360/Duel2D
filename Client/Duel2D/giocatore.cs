@@ -41,7 +41,7 @@ namespace Duel2D
 
         public string toCsv()         //invio solo le informazioni di update durante la partita come x, y e comando
         {
-            return x + ";" + y + ";" + comando;
+            return nome + ";" + x + ";" + y + ";" + comando;
         }
 
         public static giocatore toGiocatore(string str)
