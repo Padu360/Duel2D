@@ -14,22 +14,26 @@ namespace Duel2D
         public Texture2D sGioco { get; set; }
         public Texture2D corre { get; set; }
         public Texture2D spara { get; set; }
+        
 
-        public animazione test;
+        public animazione omino;
+        public animazione omino2;
         public animazione sparo;
+        tcpClass clientTcp;
 
         public giocatore giocatore { get; set; }
         public giocatore avversario { get; set; }
         public double countSparo;
         public double countSparoAnimazione;
         public int azione = 0;
-        private bool oldStateM;
+        private bool ric = true;
 
 
-        public partita()
+        public partita(tcpClass tmp)
         {
             giocatore = new giocatore("andre", 1);
             avversario = new giocatore("nemico", 2);
+            clientTcp = tmp;
         }
 
         public void Carica(Microsoft.Xna.Framework.Content.ContentManager content)
@@ -37,7 +41,8 @@ namespace Duel2D
             sGioco = content.Load<Texture2D>("sGioco");
             corre = content.Load<Texture2D>("s1corre");
             spara = content.Load<Texture2D>("s1spara");
-            test = new animazione(corre, 1, 4, 3, 170);
+            omino = new animazione(corre, 1, 4, 3, 170);
+            omino2 = new animazione(corre, 1, 4, 3, 170);
             sparo = new animazione(spara, 1, 4, 3, 170);
         }
 
@@ -49,44 +54,62 @@ namespace Duel2D
             int my = mouseState.Y;
 
             if (azione == 0)
-                test.Update(gameTime);
+                omino.Update(gameTime);
             if (azione == 1)
                 sparo.Update(gameTime);
 
-
-            if (azione != 1)
+            if (ric)
             {
-                if (keyboardState.IsKeyDown(Keys.A))
+
+                if (azione != 1)
                 {
-                    giocatore.x = giocatore.x - 2;
-                    azione = 0;
+                    if (keyboardState.IsKeyDown(Keys.A))
+                    {
+                        giocatore.x = giocatore.x - 2;
+                        giocatore.comando = "muovi";
+                        azione = 0;
+                    }
+                    else if (keyboardState.IsKeyDown(Keys.D))
+                    {
+                        giocatore.x = giocatore.x + 2;
+                        giocatore.comando = "muovi";
+                        azione = 0;
+                    }
                 }
-                else if (keyboardState.IsKeyDown(Keys.D))
+
+
+                countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (countSparo >= 80)
                 {
-                    giocatore.x = giocatore.x + 2;
+                    if (mouseState.LeftButton == ButtonState.Pressed)
+                        azione = 1;
+
+                    countSparo = 0;
+                }
+
+
+                countSparoAnimazione += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (countSparoAnimazione >= 680 && azione == 1)
+                {
                     azione = 0;
+                    countSparoAnimazione = 0;
+
                 }
             }
 
-
-
-            countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (countSparo >= 80)
+            ric = false;
+            clientTcp.invia(giocatore.toCsv());
+            string muovimenti = clientTcp.ricevi();
+            string[] vet = muovimenti.Split(";");
+            if (vet[0] == giocatore.nome)
             {
-                if (mouseState.LeftButton == ButtonState.Pressed)
-                    azione = 1;
-
-                countSparo = 0;
+                ric = giocatore.toGiocatore(muovimenti);
             }
-
-
-            countSparoAnimazione += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (countSparoAnimazione >= 680 && azione == 1)
+            if (vet[0] == avversario.nome)
             {
-                azione = 0;
-                countSparoAnimazione = 0;
-
+                ric = avversario.toGiocatore(muovimenti);
             }
+ 
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -95,9 +118,14 @@ namespace Duel2D
             spriteBatch.Draw(sGioco, new Rectangle(0, 0, 1200, 800), Color.White);
 
             if (azione == 0)
-                test.Draw(spriteBatch, new Vector2(giocatore.x, giocatore.y));
+                omino.Draw(spriteBatch, new Vector2(giocatore.x, giocatore.y));
             if (azione == 1)
                 sparo.Draw(spriteBatch, new Vector2(giocatore.x, giocatore.y));
+
+            if (avversario.comando.Equals("muovi"))
+                omino2.Draw(spriteBatch, new Vector2(avversario.x, avversario.y));
+            if (avversario.comando.Equals("spara"))
+                sparo.Draw(spriteBatch, new Vector2(avversario.x, avversario.y));
 
 
             spriteBatch.End();

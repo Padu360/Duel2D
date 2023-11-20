@@ -34,13 +34,14 @@ namespace Duel2D
         private bool sensoOpacita = true;
         private int nr = 1;
         private int i = 0;
+        private bool inviato = false;
 
 
         public Screen()
         {
-            clientTcp = new tcpClass("127.0.0.1", 9999);
+            clientTcp = new tcpClass("172.16.102.109", 9999);
             menu = new menu();
-            game = new partita();
+            game = new partita(clientTcp);
         }
 
         public void carica(Microsoft.Xna.Framework.Content.ContentManager content)

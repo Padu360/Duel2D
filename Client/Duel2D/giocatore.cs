@@ -19,6 +19,7 @@ namespace Duel2D
             this.nome = "";
             this.x = 0;
             this.y = 640;
+            this.comando = "muovi";
         }
 
         public giocatore(string nome, int nTexture)
@@ -27,6 +28,7 @@ namespace Duel2D
             this.nTexture = nTexture;
             this.x = 0;
             this.y = 640;
+            this.comando = "muovi";
         }
 
         public void update()
@@ -50,10 +52,14 @@ namespace Duel2D
             return new giocatore(vet[0], int.Parse(vet[1]));
         }
 
-        public static giocatore toGiocatore(string str)
+        public bool toGiocatore(string str)
         {
             string[] vet = str.Split(";");
-            return new giocatore(vet[0], int.Parse(vet[1]));
+            nome = vet[0];
+            x = int.Parse(vet[1]);
+            y = int.Parse(vet[2]);
+            comando = vet[3];
+            return true;
         }
     }
 }
