@@ -25,10 +25,10 @@ public class ThreadPartita extends Thread {
                     int vita = giocatorePrincipale.colpito();
                     if (vita > 0) {
                         connPrincipale.invia(giocatorePrincipale.nome + ";" + vita);
-                        connSecondaria.invia(giocatorePrincipale.nome + ";" + vita);
+                        // connSecondaria.invia(giocatorePrincipale.nome + ";" + vita);
                     } else {
                         connPrincipale.invia(giocatorePrincipale.nome + ";" + "sconfitta");
-                        connSecondaria.invia(giocatorePrincipale.nome + ";" + "vittoria");
+                        // connSecondaria.invia(giocatorePrincipale.nome + ";" + "vittoria");
                     }
 
                 } else if (msg.contains("muovi")) {
@@ -36,17 +36,20 @@ public class ThreadPartita extends Thread {
                     messaggio.Splitta();
                     giocatorePrincipale.muovi(Integer.parseInt(messaggio.x), Integer.parseInt(messaggio.y));
                     connPrincipale.invia(messaggio.toCsv());
-                    connSecondaria.invia(messaggio.toCsv());
+                    // connSecondaria.invia(messaggio.toCsv());
                 } else if (msg.contains("salta")) {
                     connPrincipale.invia(giocatorePrincipale.nome + ";" + "salta");
-                    connSecondaria.invia(giocatorePrincipale.nome + ";" + "salta");
+                    // connSecondaria.invia(giocatorePrincipale.nome + ";" + "salta");
                 } else if (msg.equals("fine")) {
                     connPrincipale.invia("fine");
-                    connSecondaria.invia("fine");
+                    // connSecondaria.invia("fine");
                     inCorso = false;
                 } else if (msg.equals("rivincita")) {
                     giocatorePrincipale.vita = 100;
                     giocatoreSecondario.vita = 100;
+                } else if (msg.equals("spara")) {
+                    connPrincipale.invia(giocatorePrincipale.nome + ";" + "spara");
+                    // connSecondaria.invia(giocatorePrincipale.nome + ";" + "salta");
                 }
 
             } catch (IOException e) {

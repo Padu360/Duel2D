@@ -28,8 +28,11 @@ public class ThreadConnessione extends Thread {
             e.printStackTrace();
             return;
         }
+        msg.Splitta();
         this.giocatore = new Giocatore(msg.nome, Integer.parseInt(msg.x),
                 Integer.parseInt(msg.y));
+
+        server.invia(msg.toCsv());
 
     }
 }

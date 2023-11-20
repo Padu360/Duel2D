@@ -40,12 +40,13 @@ public class TCPServerMOD {
     }
 
     public String ricevi() throws IOException {
-        String str;
+        String str = "";
 
+        // while (true) {
         str = in.readLine();
         System.out.println(str);
-
         return str;
+        // }
     }
 
     public void invia(String msg) {
