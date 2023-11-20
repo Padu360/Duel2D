@@ -36,7 +36,7 @@ namespace Duel2D
 
         public string toCsvAll()      //invio le informazioni base del giocatore, quindi quando effettuo la prima connessione al server
         {
-            return nome + ";" + nTexture + ";";
+            return nome + ";" + nTexture;
         }
 
         public string toCsv()         //invio solo le informazioni di update durante la partita come x, y e comando

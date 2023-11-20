@@ -38,7 +38,7 @@ namespace Duel2D
 
         public Screen()
         {
-            clientTcp = new tcpClass("127.0.0.1", 9999);
+            clientTcp = new tcpClass("172.16.102.109", 9999);
             menu = new menu();
             game = new partita();
         }
@@ -83,6 +83,8 @@ namespace Duel2D
         public void updateGioco(GameTime gameTime)
         {
             game.Update(gameTime);
+            clientTcp.invia(giocatore.toCsv());
+            //clientTcp.ricevi();
         }
 
         public void animazioneTesto()

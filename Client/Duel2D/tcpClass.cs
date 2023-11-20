@@ -71,15 +71,16 @@ namespace Duel2D
             try
             {
                 client = new TcpClient(ipAdress, port);
-
-                data = System.Text.Encoding.ASCII.GetBytes(msg);
                 stream = client.GetStream();
 
+                /*
                 data = new Byte[256];                           //RICEVI
                 String responseData = String.Empty;
                 Int32 bytes = stream.Read(data, 0, data.Length);
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
                 Console.WriteLine("Received: {0}", responseData);
+                */
+                return true;
             }
             catch (SocketException e)
             {
@@ -92,57 +93,7 @@ namespace Duel2D
             catch (ObjectDisposedException ex)
             {
                 return false;
-            }
-
-
-            //stream.Write(data, 0, data.Length);           INVIA
-            //Console.WriteLine("Sent: {0}", msg);
-
-
-
-
-            /*
-            Thread receiveThread = new Thread(riceviMessaggio);
-            receiveThread.Start();
-
-
-            // Invia un messaggio al server
-            Byte[] data2 = System.Text.Encoding.ASCII.GetBytes(msg);
-            stream.Write(data2, 0, data2.Length);         
-            Console.WriteLine("Sent: {0}", msg);
-            */
-
-
-
-
-
-
-
-
-            /*
-                * stream.Close();
-            client.Close();
-                * 
-                * 
-            try
-            {
-                client = new TcpClient(ipAdress, port);
-                stream = client.GetStream();
-                Console.WriteLine("Connected to server.");
-
-                // Avvia il thread per la ricezione dei messaggi in modo asincrono
-                Thread receiveThread = new Thread(riceviMessaggio);
-                receiveThread.Start();
-
-                // Invia un messaggio al server
-                inviaMessaggio("Hello, server!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e);
-            }
-            */
-            return true;
+            }    
         }
 
         public void ricevi()
@@ -157,29 +108,18 @@ namespace Duel2D
                     string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
                     msgRicevuto = receivedMessage;
                 }
-                msgRicevuto = "";
             }
             catch (SocketException e)
             {
                 msgRicevuto = "";
             }
-
-
-            /* da implementare thread
-            if (!ricevendo)
-            {
-                Thread connectionThread = new Thread(riceviMessaggio);
-                connectionThread.Start();
-            }
-            return null;
-            */
         }
 
         public void invia(string msg)
         {
             try
             {
-                byte[] data = Encoding.ASCII.GetBytes(msg);
+                byte[] data = Encoding.ASCII.GetBytes(msg + "\r\n");
                 stream.Write(data, 0, data.Length);
             }
             catch (SocketException e)
@@ -188,59 +128,10 @@ namespace Duel2D
             }
         }
 
-
-        private string riceviMessaggio()
-        {
-            try
-            {
-                byte[] receivedBytes = new byte[1024];
-                int byteCount = stream.Read(receivedBytes, 0, receivedBytes.Length);
-
-                if (byteCount > 0)
-                {
-                    string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
-                    return receivedMessage;
-                }
-                return null;
-            }
-            catch (SocketException e)
-            {
-                return null;
-            }
-        }
 
         public bool isRicevendo()
         {
             return ricevendo;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void inviaMessaggio(string message)
-        {
-            try
-            {
-                byte[] data = Encoding.ASCII.GetBytes(message);
-                stream.Write(data, 0, data.Length);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e);
-            }
         }
     }
 }
