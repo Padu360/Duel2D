@@ -4,8 +4,11 @@ public class Giocatore {
     public int nTexture;
     public int x;
     public int y;
+    public int vita;
     final int MAX_WIDTH = 100;
     final int MIN_WIDTH = 10;
+    final int MAX_VITA = 100;
+    final int DANNI_COLPO = 10;
 
     public Giocatore() {
     }
@@ -15,6 +18,7 @@ public class Giocatore {
         // this.nTexture = nTexture;
         this.x = x;
         this.y = y;
+        this.vita = MAX_VITA;
     }
 
     public String muovi(int x, char direzione) {
@@ -39,6 +43,22 @@ public class Giocatore {
         ris = nome + ";" + x + "";
 
         return ris;
+    }
+
+    public String muovi(int x, int y) {
+        String ris = "";
+
+        ris = nome + ";" + x + ";" + y;
+
+        return ris;
+    }
+
+    public int colpito() {
+        vita -= DANNI_COLPO;
+        if (vita <= 0) {
+            vita = 0;
+        }
+        return vita;
     }
 
 }

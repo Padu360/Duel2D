@@ -3,15 +3,17 @@ import java.io.IOException;
 public class ThreadConnessione extends Thread {
     private TCPServerMOD server;
     private Giocatore giocatore;
+    private int port;
 
-    public ThreadConnessione(TCPServerMOD Server, Giocatore giocatore) {
+    public ThreadConnessione(TCPServerMOD Server, Giocatore giocatore, int port) {
         this.server = Server;
         this.giocatore = giocatore;
+        this.port = port;
     }
 
     public void run() {
         try {
-            server.start(9999);
+            server.start(port);
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -25,6 +27,7 @@ public class ThreadConnessione extends Thread {
             e.printStackTrace();
             return;
         }
-        giocatore = new Giocatore(msg.nome, Integer.parseInt(msg.x), Integer.parseInt(msg.y));
+        this.giocatore = new Giocatore(msg.nome, Integer.parseInt(msg.x), Integer.parseInt(msg.y));
+
     }
 }

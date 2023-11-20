@@ -18,4 +18,8 @@ public class Messaggio {
         comando = str[3];
     }
 
+    public String toCsv() {
+        return nome + ";" + x + ";" + y + ";" + comando;
+    }
+
 }

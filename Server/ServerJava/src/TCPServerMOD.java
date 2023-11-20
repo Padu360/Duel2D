@@ -48,4 +48,8 @@ public class TCPServerMOD {
 
         return str;
     }
+
+    public void invia(String msg) {
+        out.println(msg);
+    }
 }
