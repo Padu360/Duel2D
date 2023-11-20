@@ -22,12 +22,14 @@ public class ThreadConnessione extends Thread {
         Messaggio msg;
         try {
             msg = new Messaggio(server.ricevi());
+            System.out.println(msg.messaggio);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return;
         }
-        this.giocatore = new Giocatore(msg.nome, Integer.parseInt(msg.x), Integer.parseInt(msg.y));
+        this.giocatore = new Giocatore(msg.nome, Integer.parseInt(msg.x),
+                Integer.parseInt(msg.y));
 
     }
 }

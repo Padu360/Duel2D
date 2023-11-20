@@ -29,7 +29,7 @@ public class TCPServerMOD {
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        out.println("Connessione stabilita");
+        // out.println("Connessione stabilita");
     }
 
     public void stop() throws IOException {
@@ -40,11 +40,10 @@ public class TCPServerMOD {
     }
 
     public String ricevi() throws IOException {
-        String str = "";
-        do {
-            str = in.readLine();
-            System.out.println(str);
-        } while (str == "NULL");
+        String str;
+
+        str = in.readLine();
+        System.out.println(str);
 
         return str;
     }
