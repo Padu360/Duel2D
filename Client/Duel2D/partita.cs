@@ -14,13 +14,14 @@ namespace Duel2D
         public Texture2D sGioco { get; set; }
         public Texture2D corre { get; set; }
         public Texture2D spara { get; set; }
-        
+
 
         public animazione omino;
         public animazione omino2;
         public animazione sparo;
         tcpClass clientTcp;
 
+        public Proiettili gestProiettili;
         public giocatore giocatore { get; set; }
         public giocatore giocatoreTmp { get; set; }
         public giocatore avversario { get; set; }
@@ -29,9 +30,8 @@ namespace Duel2D
         public double countSparoAnimazione;
         public double countInvio;
         public string uInvio = "";
-        public int azione = 0;
-        public int x = 0;
-        public int y = 640;
+        public int azioneG = 0;
+        public int azioneV = 0;
         private bool ric = true;
 
 
@@ -40,6 +40,7 @@ namespace Duel2D
             giocatore = new giocatore("andre", 1);
             giocatoreTmp = new giocatore("andre", 1);
             avversario = new giocatore("nemico", 2);
+            gestProiettili = new Proiettili();
             clientTcp = tmp;
         }
 
@@ -48,6 +49,7 @@ namespace Duel2D
             sGioco = content.Load<Texture2D>("sGioco");
             corre = content.Load<Texture2D>("s1corre");
             spara = content.Load<Texture2D>("s1spara");
+            gestProiettili.carica(content);
             omino = new animazione(corre, 1, 4, 3, 170);
             omino2 = new animazione(corre, 1, 4, 3, 170);
             sparo = new animazione(spara, 1, 4, 3, 170);
@@ -60,53 +62,56 @@ namespace Duel2D
             int mx = mouseState.X;
             int my = mouseState.Y;
 
-            if (azione == 0)
+            gestProiettili.Update(gameTime);
+            if (azioneG == 0)
                 omino.Update(gameTime);
-            if (azione == 1)
+            if (azioneG == 1)
                 sparo.Update(gameTime);
 
-            //if (ric)
-            //{
+
             countMovimento += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (countMovimento >= 80)
             {
-                if (azione != 1)
+                if (azioneG != 1)
                 {
                     if (keyboardState.IsKeyDown(Keys.A))
                     {
                         giocatoreTmp.x = giocatoreTmp.x - 2;
                         giocatoreTmp.comando = "muovi";
-                        azione = 0;
+                        azioneG = 0;
                     }
                     else if (keyboardState.IsKeyDown(Keys.D))
                     {
                         giocatoreTmp.x = giocatoreTmp.x + 2;
                         giocatoreTmp.comando = "muovi";
-                        azione = 0;
+                        azioneG = 0;
                     }
                 }
             }
 
+            countSparoAnimazione += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (countSparoAnimazione >= 680 && azioneG == 1)
+            {
+                azioneG = 0;
+                countSparoAnimazione = 0;
+            }
 
-                countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (countSparo >= 80)
+
+            countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (countSparo >= 250)
+            {
+                if (mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    if (mouseState.LeftButton == ButtonState.Pressed)
-                        azione = 1;
-
-                    countSparo = 0;
+                    gestProiettili.push(giocatoreTmp.x + 83, giocatoreTmp.y + 30, "D");
+                    azioneG = 1;
                 }
 
+                countSparo = 0;
+            }
 
-                countSparoAnimazione += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (countSparoAnimazione >= 680 && azione == 1)
-                {
-                    azione = 0;
-                    countSparoAnimazione = 0;
+            
 
-                }
 
-            ric = false;
             string msgInvio = giocatoreTmp.toCsv();
             countInvio += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (!uInvio.Equals(msgInvio))
@@ -124,14 +129,14 @@ namespace Duel2D
                 vet = muovimenti.Split(";");
                 if (vet[0] == giocatore.nome)
                 {
-                    ric = giocatore.toGiocatore(muovimenti);
+                    giocatore.toGiocatore(muovimenti);
                 }
                 if (vet[0] == avversario.nome)
                 {
-                    ric = avversario.toGiocatore(muovimenti);
+                    avversario.toGiocatore(muovimenti);
                 }
             }
-            
+          
  
         }
 
@@ -140,15 +145,17 @@ namespace Duel2D
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(sGioco, new Rectangle(0, 0, 1200, 800), Color.White);
 
-            if (azione == 0)
+            if (azioneG == 0)
                 omino.Draw(spriteBatch, new Vector2(giocatore.x, giocatore.y));
-            if (azione == 1)
+            if (azioneG == 1)
                 sparo.Draw(spriteBatch, new Vector2(giocatore.x, giocatore.y));
 
             if (avversario.comando.Equals("muovi"))
                 omino2.Draw(spriteBatch, new Vector2(avversario.x, avversario.y));
             if (avversario.comando.Equals("spara"))
                 sparo.Draw(spriteBatch, new Vector2(avversario.x, avversario.y));
+
+            gestProiettili.Draw(spriteBatch); 
 
 
             spriteBatch.End();

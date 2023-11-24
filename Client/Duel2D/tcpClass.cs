@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System.Net.Mime;
+
 
 namespace Duel2D
 {
@@ -138,7 +140,7 @@ namespace Duel2D
             }
             catch (Exception e)
             {
-
+                
             }
         }
 

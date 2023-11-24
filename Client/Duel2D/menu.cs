@@ -41,9 +41,9 @@ namespace Duel2D
             cLeft = content.Load<Texture2D>("cLeft");
             cRight = content.Load<Texture2D>("cRight");
 
-            tso1 = content.Load<Texture2D>("soldato5");
+            tso1 = content.Load<Texture2D>("s1spara");
             soldato1 = new animazione(tso1, 1, 4, 10, 150);
-            tso2 = content.Load<Texture2D>("soldato6");
+            tso2 = content.Load<Texture2D>("s2spara");
             soldato2 = new animazione(tso2, 1, 4, 10, 150);
         }
 

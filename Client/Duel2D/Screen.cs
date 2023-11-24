@@ -32,14 +32,11 @@ namespace Duel2D
 
         private float opacitaTI = 0.1f;
         private bool sensoOpacita = true;
-        private int nr = 1;
-        private int i = 0;
-        private bool inviato = false;
 
 
         public Screen()
         {
-            clientTcp = new tcpClass("89.40.142.55", 9999);
+            clientTcp = new tcpClass("89.40.142.55", 9999);  //89.40.142.55
             menu = new menu();
             game = new partita(clientTcp);
         }
