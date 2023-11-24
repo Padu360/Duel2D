@@ -22,16 +22,23 @@ namespace Duel2D
         tcpClass clientTcp;
 
         public giocatore giocatore { get; set; }
+        public giocatore giocatoreTmp { get; set; }
         public giocatore avversario { get; set; }
         public double countSparo;
+        public double countMovimento;
         public double countSparoAnimazione;
+        public double countInvio;
+        public string uInvio = "";
         public int azione = 0;
+        public int x = 0;
+        public int y = 640;
         private bool ric = true;
 
 
         public partita(tcpClass tmp)
         {
             giocatore = new giocatore("andre", 1);
+            giocatoreTmp = new giocatore("andre", 1);
             avversario = new giocatore("nemico", 2);
             clientTcp = tmp;
         }
@@ -58,24 +65,27 @@ namespace Duel2D
             if (azione == 1)
                 sparo.Update(gameTime);
 
-            if (ric)
+            //if (ric)
+            //{
+            countMovimento += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (countMovimento >= 80)
             {
-
                 if (azione != 1)
                 {
                     if (keyboardState.IsKeyDown(Keys.A))
                     {
-                        giocatore.x = giocatore.x - 2;
-                        giocatore.comando = "muovi";
+                        giocatoreTmp.x = giocatoreTmp.x - 2;
+                        giocatoreTmp.comando = "muovi";
                         azione = 0;
                     }
                     else if (keyboardState.IsKeyDown(Keys.D))
                     {
-                        giocatore.x = giocatore.x + 2;
-                        giocatore.comando = "muovi";
+                        giocatoreTmp.x = giocatoreTmp.x + 2;
+                        giocatoreTmp.comando = "muovi";
                         azione = 0;
                     }
                 }
+            }
 
 
                 countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -95,20 +105,33 @@ namespace Duel2D
                     countSparoAnimazione = 0;
 
                 }
-            }
 
             ric = false;
-            clientTcp.invia(giocatore.toCsv());
-            string muovimenti = clientTcp.ricevi();
-            string[] vet = muovimenti.Split(";");
-            if (vet[0] == giocatore.nome)
+            string msgInvio = giocatoreTmp.toCsv();
+            countInvio += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (!uInvio.Equals(msgInvio))
             {
-                ric = giocatore.toGiocatore(muovimenti);
+                clientTcp.invia(msgInvio);
+                countInvio = 0;
             }
-            if (vet[0] == avversario.nome)
+            uInvio = msgInvio;
+
+            clientTcp.tRicevi();
+            string muovimenti = clientTcp.getMessaggio();
+            string[] vet;
+            if (!muovimenti.Equals("null"))
             {
-                ric = avversario.toGiocatore(muovimenti);
+                vet = muovimenti.Split(";");
+                if (vet[0] == giocatore.nome)
+                {
+                    ric = giocatore.toGiocatore(muovimenti);
+                }
+                if (vet[0] == avversario.nome)
+                {
+                    ric = avversario.toGiocatore(muovimenti);
+                }
             }
+            
  
         }
 

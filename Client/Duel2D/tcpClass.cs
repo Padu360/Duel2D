@@ -24,7 +24,7 @@ namespace Duel2D
         private string msg = "ciao";
         private bool connection = false;
         private bool t = false;
-        private bool inviando = false;
+        private bool nuovo = false;
         private bool ricevendo = false;
 
         public string msgRicevuto { get; set; }
@@ -88,10 +88,11 @@ namespace Duel2D
             }
         }
 
-        public string ricevi()
+        public void ricevi()
         {
             try
             {
+                ricevendo = true;
                 byte[] receivedBytes = new byte[1024];
                 int byteCount = stream.Read(receivedBytes, 0, receivedBytes.Length);
 
@@ -99,14 +100,33 @@ namespace Duel2D
                 {
                     string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
                     msgRicevuto = receivedMessage;
-                    return msgRicevuto;
+                    nuovo = true;
                 }
+                ricevendo = false;
             }
-            catch (SocketException e)
+            catch (Exception e)
             {
-                 return msgRicevuto = "";
+                 msgRicevuto = "null";
+            }
+        }
+
+        public string getMessaggio()
+        {
+            if (nuovo == true)
+            {
+                nuovo = false;
+                return msgRicevuto;
             }
             return "";
+        }
+
+        public void tRicevi()
+        {
+            if (ricevendo == false)
+            {
+                Thread connectionThread = new Thread(ricevi);
+                connectionThread.Start();
+            }
         }
 
         public void invia(string msg)
@@ -116,7 +136,7 @@ namespace Duel2D
                 byte[] data = Encoding.ASCII.GetBytes(msg + "\r\n");
                 stream.Write(data, 0, data.Length);
             }
-            catch (SocketException e)
+            catch (Exception e)
             {
 
             }
