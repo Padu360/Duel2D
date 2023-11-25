@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Duel2D
 {
-    internal class Animazioni
+    internal class Animazioni //classe che si occupa di gestire le animazioni di tutto il gioco
     {
-        public Texture2D idlet { get; set; }
+        public Texture2D idlet { get; set; }    //creo oggetto texture nel nostro caso 4
         public Texture2D corret { get; set; }
         public Texture2D sparat { get; set; }
         public Texture2D saltat { get; set; }
 
-        public animazione idle;
+        public animazione idle;                 //creo 4 oggetti animazione e 4 oggetti con l'animazione specchiata
         public animazione corre;
         public animazione spara;
         public animazione salta;
@@ -25,20 +25,20 @@ namespace Duel2D
         public animazioneSpecchio sparas;
         public animazioneSpecchio saltas;
 
-        public Rectangle entita { get; set; }
+        public Rectangle entita { get; set; }   //entita del giocatore per poi verificare se è stato colpito da un proiettile
 
-        public int azione { get; set; }
-        public double countSparoAnimazione;
+        public int azione { get; set; }         //che azione sta facendo il giocatore, corre, salta, spara ecc
+        public double countSparoAnimazione;     
         public double countSparo;
-        public int nTexture;
-        public string verso { get; set; }
+        public int nTexture;                
+        public string verso { get; set; }       //verso se si trova a destra o sinistra il giocatore
 
         public Animazioni() {
             entita = new Rectangle();
             verso = "";
         }
 
-        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
+        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)  //carico tutte le texture e animazioni
         {
             if (nTexture == 0)
             {
@@ -64,7 +64,7 @@ namespace Duel2D
             saltas = new animazioneSpecchio(saltat, 1, 4, 3, 170);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)       //controllo se ha sparato e aggiorno i frame delle animazioni interessate a quello che sta svolgendo
         {
             MouseState mouseState = Mouse.GetState();
             int mx = mouseState.X;
@@ -117,7 +117,7 @@ namespace Duel2D
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, int x, int y)
+        public void Draw(SpriteBatch spriteBatch, int x, int y) //in base alla azione che svolge disegno la texture
         {
             if (azione == 0)
                 entita = idle.Draw(spriteBatch, new Vector2(x, y), entita);

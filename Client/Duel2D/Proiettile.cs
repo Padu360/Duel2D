@@ -9,12 +9,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Duel2D
 {
-    internal class Proiettile
+    internal class Proiettile   //classe che si occupa di creare un proiettile
     {
-        public Rectangle pallottola;
+        public Rectangle pallottola;    //mi serve poi per vedere se colpisce un giocatore
         public int x { get; set; }
         public int y { get; set; }
-        public string verso { get; set; }
+        public string verso { get; set; } //verso del proiettile destra o sinistra
 
         public Proiettile()
         {
@@ -30,7 +30,7 @@ namespace Duel2D
             this.verso = verso;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D texture)
+        public void Draw(SpriteBatch spriteBatch, Texture2D texture) //disegno il proiettile
         {
             pallottola.X = x;
             pallottola.Y = y;
@@ -40,9 +40,9 @@ namespace Duel2D
                 spriteBatch.Draw(texture, pallottola, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
         }
 
-        public bool controlla(Rectangle entita)
+        public bool controlla(Rectangle entita) //controllo se il nemico è stato colpito dal proiettile
         {
-            if (entita.Intersects(pallottola))
+            if (entita.Contains(pallottola))
             {
                 return true;
             }

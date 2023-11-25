@@ -36,12 +36,12 @@ namespace Duel2D
 
         public Screen()
         {
-            clientTcp = new tcpClass("localhost", 9999);  //89.40.142.55
-            menu = new menu();
+            clientTcp = new tcpClass("localhost", 9999);  //creo il client tcp, server vero su cui provarlo: 89.40.142.55 (ora off)
+            menu = new menu();                            //creo il gestore del menu
             game = new partita(clientTcp);
         }
 
-        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
+        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)  //carico tutte le texture necessarie
         {
             sIniziale = content.Load<Texture2D>("sIniziale");
             sMenu = content.Load<Texture2D>("sMenu");
@@ -54,36 +54,36 @@ namespace Duel2D
             game.Carica(content);
         }
 
-        public void unload()
+        public void unload() //funzione per rimuovere le texture che non uso
         {
 
         }
 
-        public void updateStart(GameTime gameTime)
+        public void updateStart(GameTime gameTime)  //update per gestire lo start
         {
 
         }
 
-        public void updateMenu(GameTime gameTime)
+        public void updateMenu(GameTime gameTime)   //update per gestire il menu, in questo caso:
         {
-            clientTcp.Update();
-            menu.Update(gameTime);
-            giocatore = menu.getGiocatore();
-            if (menu.isGioca())
+            clientTcp.Update();                 //connetto al server
+            menu.Update(gameTime);              //update del gestore menu
+            giocatore = menu.getGiocatore();    //creo giocatore
+            if (menu.isGioca())                 //avvio partita
                 schermata = 3;
         }
 
-        public void updateCaricamento(GameTime gameTime)
+        public void updateCaricamento(GameTime gameTime)    //update per gestire la schermata di caricamento
         {
             caricamento.Update(gameTime);
         }
 
-        public void updateGioco(GameTime gameTime)
+        public void updateGioco(GameTime gameTime)      //update per gestire il gioco
         {
-            game.Update(gameTime);
+            game.Update(gameTime);  //richiamo la funzione update della classe partita che si occuperà del resto
         }
 
-        public void animazioneTesto()
+        public void animazioneTesto()   //per fare la scritta figa che pulsa a inizio gioco 
         {
             if (sensoOpacita)
             {
@@ -105,9 +105,9 @@ namespace Duel2D
             }
         }
 
-        public void DrawStart(SpriteBatch spriteBatch)
+        public void DrawStart(SpriteBatch spriteBatch)      //disegno lo start
         {
-            animazioneTesto();
+            animazioneTesto();  //richiamo per disegnare la scritta in modo che pulsi
 
             spriteBatch.Begin();
             spriteBatch.Draw(sIniziale, new Rectangle(0, 0, 1200, 800), Color.White);
@@ -119,18 +119,18 @@ namespace Duel2D
         {
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            spriteBatch.Draw(sMenu, new Rectangle(0, 0, 1200, 800), Color.White);
-            clientTcp.DrawStatus(spriteBatch);
-            menu.DrawMenu(spriteBatch);
+            spriteBatch.Draw(sMenu, new Rectangle(0, 0, 1200, 800), Color.White);   //disegno sfondo menu
+            clientTcp.DrawStatus(spriteBatch);  //disegno lo status del server, on o off
+            menu.DrawMenu(spriteBatch);     //disegno bottone gioca, skin ecc
 
             spriteBatch.End();
         }
 
-        public void DrawCaricamento(SpriteBatch spriteBatch)
+        public void DrawCaricamento(SpriteBatch spriteBatch)  //per disegnare la schermata di caricamento
         {
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(sCaricamento, new Rectangle(0, 0, 1200, 800), Color.White * 0.16f);
-            caricamento.Draw(spriteBatch, new Vector2(552, 352), new Rectangle());
+            spriteBatch.Draw(sCaricamento, new Rectangle(0, 0, 1200, 800), Color.White * 0.16f); //sfondo
+            caricamento.Draw(spriteBatch, new Vector2(552, 352), new Rectangle());               //animazione
 
             clientTcp.invia(giocatore.toCsv());
             //if(!clientTcp.isRicevendo())
@@ -139,17 +139,17 @@ namespace Duel2D
             spriteBatch.End();
         }
 
-        public void DrawGioco(SpriteBatch spriteBatch)
+        public void DrawGioco(SpriteBatch spriteBatch)  //per disegnare il gameplay
         {
-            game.Draw(spriteBatch);
+            game.Draw(spriteBatch); //ha una sua funzione dedicata però
         }
 
-        internal int getSchermata()
+        internal int getSchermata()  //funzione che utilizzo nel file game1
         {
             return schermata;
         }
 
-        internal int setSchermata(int x)
+        internal int setSchermata(int x)  //funzione che utilizzo nel file game1
         {
             schermata = x;
             return schermata;

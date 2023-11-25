@@ -26,9 +26,6 @@ namespace Duel2D
         public double countMovimento;
         public double countInvio;
         public string uInvio = "";
-        //public int azioneG = 0;
-        public int azioneV = 0;
-        private bool ric = true;
 
 
         public partita(tcpClass tmp)
@@ -55,9 +52,6 @@ namespace Duel2D
         {
             avversario.x = 500;
             KeyboardState keyboardState = Keyboard.GetState();
-            MouseState mouseState = Mouse.GetState();
-            int mx = mouseState.X;
-            int my = mouseState.Y;
 
             gestProiettili.Update(gameTime, aAvversario.entita);
             aGiocatore.Update(gameTime);
@@ -125,8 +119,6 @@ namespace Duel2D
                     avversario.toGiocatore(muovimenti);
                 }
             }
-          
- 
         }
 
         public void Draw(SpriteBatch spriteBatch)

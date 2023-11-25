@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Duel2D
 {
-    internal class animazioneSpecchio
+    internal class animazioneSpecchio //come la classe animazione ma specchia le texture
     {
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }
@@ -55,7 +55,6 @@ namespace Duel2D
             destinationRectangle.Y = (int)location.Y;
             destinationRectangle.Width = width * ingradimento;
             destinationRectangle.Height = height * ingradimento;
-            //destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * ingradimento, height * ingradimento);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
             return destinationRectangle;
