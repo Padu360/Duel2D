@@ -27,7 +27,11 @@ namespace Duel2D
 
         public void push(int x, int y, string verso)
         {
-            lista.Add(new Proiettile(x, y, verso));
+            if (verso.Equals("D"))
+                lista.Add(new Proiettile(x + 85, y + 30, verso));
+            if (verso.Equals("S"))
+                lista.Add(new Proiettile(x + 35, y + 30, verso));
+            
         }
 
         public void Update(GameTime gameTime)
@@ -37,9 +41,9 @@ namespace Duel2D
             {
                 for (int i = 0; i < lista.Count; i++)
                 {
-                    if(lista.ElementAt(i).Equals("D"))
+                    if(lista.ElementAt(i).verso.Equals("D"))
                         lista.ElementAt(i).x += 11;
-                    if(lista.ElementAt(i).Equals("S"))
+                    if(lista.ElementAt(i).verso.Equals("S"))
                         lista.ElementAt(i).x -= 11;
                 }
                 countSparo = 0;

@@ -14,7 +14,7 @@ namespace Duel2D
         public Rectangle pallottola;
         public int x { get; set; }
         public int y { get; set; }
-        public string verso;
+        public string verso { get; set; }
 
         public Proiettile()
         {
@@ -34,7 +34,11 @@ namespace Duel2D
         {
             pallottola.X = x;
             pallottola.Y = y;
-            spriteBatch.Draw(texture, pallottola, Color.White);
+            if (verso.Equals("D"))
+                spriteBatch.Draw(texture, pallottola, Color.White);
+            if (verso.Equals("S"))
+                spriteBatch.Draw(texture, pallottola, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Duel2D
         public int nTexture;
         public int x;
         public int y;
+        public int hp;
         public string comando;
 
         public giocatore()
@@ -19,6 +20,7 @@ namespace Duel2D
             this.nome = "";
             this.x = 0;
             this.y = 640;
+            this.hp = 100;
             this.comando = "muovi";
         }
 
@@ -28,6 +30,7 @@ namespace Duel2D
             this.nTexture = nTexture;
             this.x = 0;
             this.y = 640;
+            this.hp = 100;
             this.comando = "muovi";
         }
 
