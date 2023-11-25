@@ -43,7 +43,7 @@ namespace Duel2D
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        public Rectangle Draw(SpriteBatch spriteBatch, Vector2 location, Rectangle destinationRectangle)
         {
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
@@ -51,9 +51,14 @@ namespace Duel2D
             int column = currentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * ingradimento, height * ingradimento);
+            destinationRectangle.X = (int)location.X;
+            destinationRectangle.Y = (int)location.Y;
+            destinationRectangle.Width = width * ingradimento;
+            destinationRectangle.Height = height * ingradimento;
+            //destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * ingradimento, height * ingradimento);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+            return destinationRectangle;
         }
     }
 }

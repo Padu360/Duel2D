@@ -25,6 +25,8 @@ namespace Duel2D
         public animazioneSpecchio sparas;
         public animazioneSpecchio saltas;
 
+        public Rectangle entita { get; set; }
+
         public int azione { get; set; }
         public double countSparoAnimazione;
         public double countSparo;
@@ -32,6 +34,7 @@ namespace Duel2D
         public string verso { get; set; }
 
         public Animazioni() {
+            entita = new Rectangle();
             verso = "";
         }
 
@@ -117,24 +120,24 @@ namespace Duel2D
         public void Draw(SpriteBatch spriteBatch, int x, int y)
         {
             if (azione == 0)
-                idle.Draw(spriteBatch, new Vector2(x, y));
+                entita = idle.Draw(spriteBatch, new Vector2(x, y), entita);
             if (azione == 1)
-                idles.Draw(spriteBatch, new Vector2(x, y));
+                entita = idles.Draw(spriteBatch, new Vector2(x, y), entita);
 
             if (azione == 2)
-                corre.Draw(spriteBatch, new Vector2(x, y));
+                entita = corre.Draw(spriteBatch, new Vector2(x, y), entita);
             if (azione == 3)
-                corres.Draw(spriteBatch, new Vector2(x, y));
+                entita = corres.Draw(spriteBatch, new Vector2(x, y), entita);
 
             if (azione == 4)
-                spara.Draw(spriteBatch, new Vector2(x, y));
+                entita = spara.Draw(spriteBatch, new Vector2(x, y), entita);
             if (azione == 5)
-                sparas.Draw(spriteBatch, new Vector2(x, y));
+                entita = sparas.Draw(spriteBatch, new Vector2(x, y), entita);
 
             if (azione == 6)
-                salta.Draw(spriteBatch, new Vector2(x, y));
+                entita = salta.Draw(spriteBatch, new Vector2(x, y), entita);
             if (azione == 7)
-                saltas.Draw(spriteBatch, new Vector2(x, y));
+                entita = saltas.Draw(spriteBatch, new Vector2(x, y), entita);
         }
     }
 }

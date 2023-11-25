@@ -34,8 +34,16 @@ namespace Duel2D
             
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Rectangle entita)
         {
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista.ElementAt(i).controlla(entita))
+                {
+                    lista.RemoveAt(i);
+                } 
+            }
+
             countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (countSparo >= 80)
             {

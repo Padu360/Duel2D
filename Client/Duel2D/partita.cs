@@ -53,12 +53,13 @@ namespace Duel2D
 
         public void Update(GameTime gameTime)
         {
+            avversario.x = 500;
             KeyboardState keyboardState = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
             int mx = mouseState.X;
             int my = mouseState.Y;
 
-            gestProiettili.Update(gameTime);
+            gestProiettili.Update(gameTime, aAvversario.entita);
             aGiocatore.Update(gameTime);
             aAvversario.Update(gameTime);
 

@@ -38,7 +38,18 @@ namespace Duel2D
                 spriteBatch.Draw(texture, pallottola, Color.White);
             if (verso.Equals("S"))
                 spriteBatch.Draw(texture, pallottola, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+        }
 
+        public bool controlla(Rectangle entita)
+        {
+            if (entita.Intersects(pallottola))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

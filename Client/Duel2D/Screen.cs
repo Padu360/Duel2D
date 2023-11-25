@@ -130,7 +130,7 @@ namespace Duel2D
         {
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(sCaricamento, new Rectangle(0, 0, 1200, 800), Color.White * 0.16f);
-            caricamento.Draw(spriteBatch, new Vector2(552, 352));
+            caricamento.Draw(spriteBatch, new Vector2(552, 352), new Rectangle());
 
             clientTcp.invia(giocatore.toCsv());
             //if(!clientTcp.isRicevendo())

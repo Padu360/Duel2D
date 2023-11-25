@@ -117,9 +117,9 @@ namespace Duel2D
             spriteBatch.Draw(cRight, new Rectangle(690, 450, 80, 80), Color.White);
 
             if (selezioneSoldato == 0)
-                soldato1.Draw(spriteBatch, new Vector2(445, 295));
+                soldato1.Draw(spriteBatch, new Vector2(445, 295), new Rectangle());
             if (selezioneSoldato == 1)
-                soldato2.Draw(spriteBatch, new Vector2(445, 295));
+                soldato2.Draw(spriteBatch, new Vector2(445, 295), new Rectangle());
 
 
             //draw pulsante gioca
