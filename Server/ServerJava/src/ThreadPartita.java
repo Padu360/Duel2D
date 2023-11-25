@@ -1,15 +1,17 @@
 import java.io.IOException;
 
 public class ThreadPartita extends Thread {
-    private TCPServerMOD connPrincipale;
-    private TCPServerMOD connSecondaria;
+    private TCPServerMOD connessione;
     private Giocatore giocatorePrincipale;
     private Giocatore giocatoreSecondario;
+    private int nClientPrincipale;
+    private int nClientSecondario;
 
-    public ThreadPartita(TCPServerMOD connPrincipale, TCPServerMOD connSecondaria, Giocatore giocatorePrincipale,
+    public ThreadPartita(TCPServerMOD connessione, int nClientPrincipale, int nClientSecondario,
+            Giocatore giocatorePrincipale,
             Giocatore giocatoreSecondario) {
-        this.connPrincipale = connPrincipale;
-        this.connSecondaria = connSecondaria;
+        this.connessione = connessione;
+        this.nClientPrincipale = nClientPrincipale;
         this.giocatorePrincipale = giocatorePrincipale;
         this.giocatoreSecondario = giocatoreSecondario;
     }
@@ -19,37 +21,40 @@ public class ThreadPartita extends Thread {
         String msg = "";
         do {
             try {
-                msg = connPrincipale.ricevi();
+                msg = connessione.ricevi(nClientPrincipale);
 
                 if (msg.contains("colpito")) {
                     int vita = giocatorePrincipale.colpito();
                     if (vita > 0) {
-                        connPrincipale.invia(giocatorePrincipale.nome + ";" + vita);
-                        // connSecondaria.invia(giocatorePrincipale.nome + ";" + vita);
+                        connessione.invia(giocatorePrincipale.nome + ";" + vita, nClientPrincipale);
+                        connessione.invia(giocatorePrincipale.nome + ";" + vita, nClientSecondario);
                     } else {
-                        connPrincipale.invia(giocatorePrincipale.nome + ";" + "sconfitta");
-                        // connSecondaria.invia(giocatorePrincipale.nome + ";" + "vittoria");
+                        connessione.invia(giocatorePrincipale.nome + ";" + "sconfitta", nClientPrincipale);
+                        connessione.invia(giocatorePrincipale.nome + ";" + "vittoria", nClientSecondario);
                     }
 
                 } else if (msg.contains("muovi")) {
                     Messaggio messaggio = new Messaggio(msg);
                     messaggio.Splitta();
                     giocatorePrincipale.muovi(Integer.parseInt(messaggio.x), Integer.parseInt(messaggio.y));
-                    connPrincipale.invia(messaggio.toCsv());
-                    // connSecondaria.invia(messaggio.toCsv());
+                    connessione.invia(messaggio.toCsv(), nClientPrincipale);
+                    connessione.invia(messaggio.toCsv(), nClientSecondario);
                 } else if (msg.contains("salta")) {
-                    connPrincipale.invia(giocatorePrincipale.nome + ";" + "salta");
-                    // connSecondaria.invia(giocatorePrincipale.nome + ";" + "salta");
-                } else if (msg.equals("fine")) {
-                    connPrincipale.invia("fine");
-                    // connSecondaria.invia("fine");
+                    connessione.invia(giocatorePrincipale.nome + ";" + "salta", nClientPrincipale);
+                    connessione.invia(giocatorePrincipale.nome + ";" + "salta", nClientSecondario);
+                } else if (msg.contains("fine")) {
+                    connessione.invia("fine", nClientPrincipale);
+                    connessione.invia("fine", nClientSecondario);
                     inCorso = false;
-                } else if (msg.equals("rivincita")) {
+                } else if (msg.contains("rivincita")) {
                     giocatorePrincipale.vita = 100;
                     giocatoreSecondario.vita = 100;
-                } else if (msg.equals("spara")) {
-                    connPrincipale.invia(giocatorePrincipale.nome + ";" + "spara");
-                    // connSecondaria.invia(giocatorePrincipale.nome + ";" + "salta");
+                } else if (msg.contains("sparaADestra")) {
+                    connessione.invia(giocatorePrincipale.nome + ";" + "sparaADestra", nClientPrincipale);
+                    connessione.invia(giocatorePrincipale.nome + ";" + "sparaADestra", nClientSecondario);
+                } else if (msg.contains("sparaASinistra")) {
+                    connessione.invia(giocatorePrincipale.nome + ";" + "sparaASinistra", nClientPrincipale);
+                    connessione.invia(giocatorePrincipale.nome + ";" + "sparaASinistra", nClientSecondario);
                 }
 
             } catch (IOException e) {
