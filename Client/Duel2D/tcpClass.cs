@@ -90,7 +90,7 @@ namespace Duel2D
             }
         }
 
-        public void ricevi()
+        public void ricevi()        //da usare per i thread
         {
             try
             {
@@ -110,6 +110,11 @@ namespace Duel2D
             {
                  msgRicevuto = "null";
             }
+        }
+
+        public void sRicevi()   
+        {
+
         }
 
         public string getMessaggio()

@@ -22,7 +22,7 @@ public class ThreadPartita extends Thread {
         do {
             try {
                 msg = connessione.ricevi(nClientPrincipale);
-
+                System.out.println(msg);
                 if (msg.contains("colpito")) {
                     int vita = giocatorePrincipale.colpito();
                     if (vita > 0) {

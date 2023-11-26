@@ -24,6 +24,7 @@ namespace Duel2D
         public giocatore avversario { get; set; }
         public double countSparo;
         public double countMovimento;
+        public bool salto = false;
         public double countInvio;
         public string uInvio = "";
 
@@ -61,7 +62,7 @@ namespace Duel2D
             countMovimento += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (countMovimento >= 80)
             {
-                if (aGiocatore.azione != 4 && aGiocatore.azione != 5)
+                if (aGiocatore.azione != 4 && aGiocatore.azione != 5 && aGiocatore.azione != 6 && aGiocatore.azione != 7)
                 {
                     if (keyboardState.IsKeyDown(Keys.A))
                     {
@@ -76,13 +77,32 @@ namespace Duel2D
                         aGiocatore.azione = 2;
                         aGiocatore.verso = "D";
                         giocatoreTmp.comando = "muovi";
-                    }
+                    }                    
+                }
+            }
+
+            if(salto != true)
+            {
+                if (keyboardState.IsKeyDown(Keys.Space))
+                {
+                    if (aGiocatore.verso.Equals("D"))
+                        aGiocatore.azione = 6;
+                    if (aGiocatore.verso.Equals("S"))
+                        aGiocatore.azione = 7;
+                    salto = true;
+                    /*
+                    giocatoreTmp.x = giocatoreTmp.x + 2;
+                    aGiocatore.azione = 2;
+                    aGiocatore.verso = "D";
+                    giocatoreTmp.comando = "muovi";
+                    */
                 }
             }
 
 
+
             countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (countSparo >= 250)
+            if (countSparo >= 250)      //aggiungo i proiettili alla lista
             {
                 if (aGiocatore.azione == 4 || aGiocatore.azione == 5)
                 {
@@ -92,10 +112,20 @@ namespace Duel2D
             }
            
 
-            
-
 
             string msgInvio = giocatoreTmp.toCsv();
+            if (msgInvio.Equals(uInvio))
+            {
+                if (aGiocatore.azione != 4 && aGiocatore.azione != 5 && aGiocatore.azione != 6 && aGiocatore.azione != 7)
+                {
+                    if (aGiocatore.verso.Equals("D"))
+                        aGiocatore.azione = 0;
+                    if (aGiocatore.verso.Equals("S"))
+                        aGiocatore.azione = 1;
+                }
+            }
+
+
             countInvio += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (!uInvio.Equals(msgInvio))
             {

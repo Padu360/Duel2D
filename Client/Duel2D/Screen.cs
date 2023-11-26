@@ -29,15 +29,18 @@ namespace Duel2D
         public giocatore avversario { get; set; }
         public animazione caricamento { get; set; }
 
-
+        public string rInvio = "";
         private float opacitaTI = 0.1f;
         private bool sensoOpacita = true;
+        public bool inviato = false;
 
 
         public Screen()
         {
-            clientTcp = new tcpClass("localhost", 9999);  //creo il client tcp, server vero su cui provarlo: 89.40.142.55 (ora off)
+            clientTcp = new tcpClass("89.40.142.55", 9999);  //creo il client tcp, server vero su cui provarlo: 89.40.142.55 (ora off)
             menu = new menu();                            //creo il gestore del menu
+            giocatore = new giocatore();
+            avversario = new giocatore();
             game = new partita(clientTcp);
         }
 
@@ -69,13 +72,35 @@ namespace Duel2D
             clientTcp.Update();                 //connetto al server
             menu.Update(gameTime);              //update del gestore menu
             giocatore = menu.getGiocatore();    //creo giocatore
-            if (menu.isGioca())                 //avvio partita
-                schermata = 3;
+            if (menu.isGioca())                 //aspetto gli altri giocatori se ho cliccato su gioca 
+                schermata = 3;                  //mi sposto su schermata caricamento
         }
 
         public void updateCaricamento(GameTime gameTime)    //update per gestire la schermata di caricamento
         {
             caricamento.Update(gameTime);
+
+            
+            if (inviato == false)
+            {
+                clientTcp.invia(giocatore.toCsv());
+                inviato = true;
+            }
+            
+            clientTcp.tRicevi();
+            string amsg = clientTcp.getMessaggio();
+            if (amsg != rInvio)
+            {
+                avversario = giocatore.toGiocatoreObj(amsg);
+
+                if (rInvio != "")
+                {
+                    game.giocatore = giocatore;
+                    game.avversario = avversario;
+                    schermata = 3;
+                }
+            }
+            rInvio = amsg;
         }
 
         public void updateGioco(GameTime gameTime)      //update per gestire il gioco
@@ -128,13 +153,12 @@ namespace Duel2D
 
         public void DrawCaricamento(SpriteBatch spriteBatch)  //per disegnare la schermata di caricamento
         {
+            animazioneTesto();
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(sCaricamento, new Rectangle(0, 0, 1200, 800), Color.White * 0.16f); //sfondo
-            caricamento.Draw(spriteBatch, new Vector2(552, 352), new Rectangle());               //animazione
 
-            clientTcp.invia(giocatore.toCsv());
-            //if(!clientTcp.isRicevendo())
-            //   avversario = giocatore.toGiocatore(clientTcp.ricevi());
+            spriteBatch.Draw(sCaricamento, new Rectangle(0, 0, 1200, 800), Color.White * 0.16f); //sfondo
+            caricamento.Draw(spriteBatch, new Vector2(552, 320), new Rectangle());               //animazione
+            spriteBatch.DrawString(fAll, "in attesa di giocatori..", new Vector2(420, 490), Color.White * opacitaTI);
 
             spriteBatch.End();
         }

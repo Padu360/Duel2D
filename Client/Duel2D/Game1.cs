@@ -52,11 +52,12 @@ namespace Duel2D
             if (schermata == 2)
             {
                 screen.updateCaricamento(gameTime);
-                schermata = screen.setSchermata(1);
+                schermata = screen.setSchermata(2);
             }
 
             if (schermata == 3)
             {
+                schermata = screen.setSchermata(3);
                 screen.updateGioco(gameTime);               //ogni schermata al proprio update per un discorso di ordine, e perchè no, anche di ottimizzazione 
             }
 
