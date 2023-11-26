@@ -97,7 +97,7 @@ namespace Duel2D
                 {
                     avversario = giocatore.toGiocatoreObj(amsg);
 
-                    if (avversario.nome != "")                  //se l'avversario ha ancora il nome di default vuol dire che il server non ha inviato niente e che non devo avviare la partita
+                    if (avversario.nome != "" && giocatore.nome != avversario.nome)                  //se l'avversario ha ancora il nome di default vuol dire che il server non ha inviato niente e che non devo avviare la partita
                     {
                         game.giocatoreTmp = giocatore;
                         game.avversario = avversario;
