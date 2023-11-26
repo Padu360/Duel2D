@@ -19,8 +19,8 @@ public class App {
             ThreadPartita threadPartita1 = new ThreadPartita(connessione, 1, 2, giocatore1, giocatore2);
             ThreadPartita threadPartita2 = new ThreadPartita(connessione, 2, 1, giocatore2, giocatore1);
             threadPartita1.start();
-            threadPartita1.join();
             threadPartita2.start();
+            threadPartita1.join();
             threadPartita2.join();
 
         }

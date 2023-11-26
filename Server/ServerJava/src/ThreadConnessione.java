@@ -25,7 +25,7 @@ public class ThreadConnessione extends Thread {
         Messaggio msg;
         try {
             msg = new Messaggio(server.ricevi(1));
-            System.out.println(msg.messaggio);
+            // System.out.println(msg.messaggio);
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class ThreadConnessione extends Thread {
         // Setta parametri giocatore ricevuti dal client 2
         try {
             msg = new Messaggio(server.ricevi(2));
-            System.out.println(msg.messaggio);
+            // System.out.println(msg.messaggio);
         } catch (IOException e) {
 
             e.printStackTrace();

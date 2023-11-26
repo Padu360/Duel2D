@@ -9,6 +9,7 @@ using System.Reflection.Metadata;
 using System.Net.Sockets;
 using System.Threading;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace Duel2D
 {
@@ -96,7 +97,7 @@ namespace Duel2D
                 if (amsg != rInvio)                             //verifico che il messaggio ricevuto non sia come altri già ricevuti
                 {
                     avversario = giocatore.toGiocatoreObj(amsg);
-
+                    Debug.WriteLine(avversario.nome);
                     if (avversario.nome != "" && giocatore.nome != avversario.nome)                  //se l'avversario ha ancora il nome di default vuol dire che il server non ha inviato niente e che non devo avviare la partita
                     {
                         game.giocatoreTmp = giocatore;
@@ -113,7 +114,7 @@ namespace Duel2D
             caricamento.Update(gameTime);
 
             
-            if (inviato == false)                           
+            /*if (inviato == false)                           
             {
                 clientTcp.invia(giocatore.toCsv());         //invio le informazioni al server del giocatore in modo che possa creare una partita
                 inviato = true;
@@ -132,7 +133,7 @@ namespace Duel2D
                     schermata = 3;
                 }
             }
-            rInvio = amsg;
+            rInvio = amsg;*/
         }
 
         public void updateGioco(GameTime gameTime)      //update per gestire il gioco
