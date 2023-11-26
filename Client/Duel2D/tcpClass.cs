@@ -95,14 +95,27 @@ namespace Duel2D
                 ricevendo = true;
                 byte[] receivedBytes = new byte[1024];
                 int byteCount = stream.Read(receivedBytes, 0, receivedBytes.Length);
+                
 
                 if (byteCount > 0)
                 {
                     string receivedMessage = Encoding.ASCII.GetString(receivedBytes, 0, byteCount);
-                    msgRicevuto = receivedMessage;
+                    if (receivedMessage.Length > 6)
+                    {
+                        int terminatorIndex = receivedMessage.IndexOf("\r\n"); // Trova l'indice del terminatore
+
+                        if (terminatorIndex >= 0)
+                        {
+                            msgRicevuto = receivedMessage.Substring(0, terminatorIndex); // Estrai la prima parte
+                        }
+                    } else
+                    {
+                        msgRicevuto = receivedMessage;
+                    }
                     nuovo = true;
                 }
                 ricevendo = false;
+                stream.Flush();
             }
             catch (Exception e)
             {

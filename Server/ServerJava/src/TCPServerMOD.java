@@ -75,8 +75,10 @@ public class TCPServerMOD {
     public void invia(String msg, int nClient) {
         if (nClient == 1) {
             out1.println(msg);
+            out1.flush();
         } else if (nClient == 2) {
             out2.println(msg);
+            out2.flush();
         }
     }
 }

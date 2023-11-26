@@ -12,6 +12,7 @@ public class ThreadPartita extends Thread {
             Giocatore giocatoreSecondario) {
         this.connessione = connessione;
         this.nClientPrincipale = nClientPrincipale;
+        this.nClientSecondario = nClientSecondario;
         this.giocatorePrincipale = giocatorePrincipale;
         this.giocatoreSecondario = giocatoreSecondario;
     }
@@ -21,11 +22,13 @@ public class ThreadPartita extends Thread {
         String msg = "";
         do {
             try {
+                Thread.sleep(10);
                 msg = connessione.ricevi(nClientPrincipale);
                 System.out.println(msg);
 
                 Messaggio messaggio = new Messaggio(msg);
-                connessione.invia(messaggio.toCsv(), nClientPrincipale);
+                messaggio.Splitta();
+                //connessione.invia(messaggio.toCsv(), nClientPrincipale);
                 connessione.invia(messaggio.toCsv(), nClientSecondario);
 
                 /*
@@ -73,7 +76,7 @@ public class ThreadPartita extends Thread {
                  * }
                  */
 
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
                 System.out.println("Errore nella ricezione del messaggio!");
                 return;

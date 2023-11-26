@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,7 +55,6 @@ namespace Duel2D
 
         public void Update(GameTime gameTime)       //update che si occupa dei movimenti, ricevi e invia messaggi, setta posizioni ecc
         {
-            avversario.x = 500;
             KeyboardState keyboardState = Keyboard.GetState();
 
             //gestori animazioni dei proiettili, giocatore e avversario
@@ -70,17 +70,15 @@ namespace Duel2D
                 {
                     if (keyboardState.IsKeyDown(Keys.A))
                     {
-                        giocatoreTmp.x = giocatoreTmp.x - 2;
+                        giocatore.x = giocatore.x - 2;
                         aGiocatore.azione = 3;
                         aGiocatore.verso = "S";
-                        giocatoreTmp.comando = "muovi";
                     }
                     else if (keyboardState.IsKeyDown(Keys.D))
                     {
-                        giocatoreTmp.x = giocatoreTmp.x + 2;
+                        giocatore.x = giocatore.x + 2;
                         aGiocatore.azione = 2;
                         aGiocatore.verso = "D";
-                        giocatoreTmp.comando = "muovi";
                     }
                 }
             }
@@ -95,7 +93,7 @@ namespace Duel2D
                     {
                         if (incrementoSalto < 22)
                         {
-                            giocatoreTmp.y = giocatoreTmp.y - 4;
+                            giocatore.y = giocatore.y - 4;
                             incrementoSalto++;
                         }
                         else
@@ -108,7 +106,7 @@ namespace Duel2D
                     {
                         if (incrementoSalto < 22)
                         {
-                            giocatoreTmp.y = giocatoreTmp.y + 4;
+                            giocatore.y = giocatore.y + 4;
                             incrementoSalto++;
                         }
                         else
@@ -147,14 +145,14 @@ namespace Duel2D
             {
                 if (aGiocatore.azione == 4 || aGiocatore.azione == 5)
                 {
-                    gestProiettili.push(giocatoreTmp.x, giocatoreTmp.y, aGiocatore.verso);
+                    gestProiettili.push(giocatore.x, giocatore.y, aGiocatore.verso);
                 }
                 countSparo = 0;
             }
 
 
-            giocatoreTmp.comando = aGiocatore.azione.ToString();
-            string msgInvio = giocatoreTmp.toCsv();
+            giocatore.comando = aGiocatore.azione.ToString();
+            string msgInvio = giocatore.toCsv();
             if (msgInvio.Equals(uInvio))        //questa si occupa di gestire quando il giocatore si trova in idle
             {
                 if (aGiocatore.azione != 4 && aGiocatore.azione != 5 && aGiocatore.azione != 6 && aGiocatore.azione != 7)
@@ -178,16 +176,20 @@ namespace Duel2D
             clientTcp.tRicevi();        //parte che si occupa di ricevere i messaggi e smistarli
             string muovimenti = clientTcp.getMessaggio();
             string[] vet;
-            if (!muovimenti.Equals("null"))
+            if (!muovimenti.Equals(""))
             {
+                Debug.WriteLine(muovimenti);
                 vet = muovimenti.Split(";");
-                if (vet[0] == giocatore.nome || vet[0] == giocatoreTmp.nome)
+                /*
+                if (vet[0] == giocatore.nome)
                 {
                     giocatore.toGiocatore(muovimenti);
                 }
+                */
                 if (vet[0] == avversario.nome)
                 {
                     avversario.toGiocatore(muovimenti);
+                    Debug.WriteLine(muovimenti);
                     aAvversario.azione = Int32.Parse(avversario.comando);
                 }
             }

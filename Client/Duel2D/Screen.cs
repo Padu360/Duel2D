@@ -43,7 +43,7 @@ namespace Duel2D
 
         public Screen()
         {
-            clientTcp = new tcpClass("89.40.142.55", 9999);  //creo il client tcp, server vero su cui provarlo: 89.40.142.55 (ora off)
+            clientTcp = new tcpClass("localhost", 9999);  //creo il client tcp, server vero su cui provarlo: 89.40.142.55 (ora off)
             menu = new menu();                            //creo il gestore del menu
             giocatore = new giocatore();
             avversario = new giocatore();
@@ -96,11 +96,12 @@ namespace Duel2D
                 string amsg = clientTcp.getMessaggio();
                 if (amsg != rInvio)                             //verifico che il messaggio ricevuto non sia come altri già ricevuti
                 {
-                    avversario = giocatore.toGiocatoreObj(amsg);
+                    if(amsg != "" || amsg != null)
+                        avversario = giocatore.toGiocatoreObj(amsg);
                     Debug.WriteLine(avversario.nome);
                     if (avversario.nome != "" && giocatore.nome != avversario.nome)                  //se l'avversario ha ancora il nome di default vuol dire che il server non ha inviato niente e che non devo avviare la partita
                     {
-                        game.giocatoreTmp = giocatore;
+                        game.giocatore = giocatore;
                         game.avversario = avversario;
                         schermata = 3;
                     }
