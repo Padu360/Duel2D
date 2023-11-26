@@ -33,15 +33,13 @@ public class TCPServerMOD {
         clientSocket1 = serverSocket.accept();
         out1 = new PrintWriter(clientSocket1.getOutputStream(), true);
         in1 = new BufferedReader(new InputStreamReader(clientSocket1.getInputStream()));
-        out1.println("Connessione stabilita");
         System.out.println("Connessione stabilita con: " + clientSocket1.getInetAddress().getHostAddress() + ":"
                 + clientSocket1.getPort());
 
         // Client 2
         clientSocket2 = serverSocket.accept();
-        out2 = new PrintWriter(clientSocket1.getOutputStream(), true);
+        out2 = new PrintWriter(clientSocket2.getOutputStream(), true);
         in2 = new BufferedReader(new InputStreamReader(clientSocket2.getInputStream()));
-        out2.println("Connessione stabilita");
         System.out.println("Connessione stabilita con: " + clientSocket2.getInetAddress().getHostAddress() + ":"
                 + clientSocket2.getPort());
     }
