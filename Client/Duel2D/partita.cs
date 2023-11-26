@@ -181,7 +181,7 @@ namespace Duel2D
             if (!muovimenti.Equals("null"))
             {
                 vet = muovimenti.Split(";");
-                if (vet[0] == giocatore.nome && vet[0] == giocatoreTmp.nome)
+                if (vet[0] == giocatore.nome || vet[0] == giocatoreTmp.nome)
                 {
                     giocatore.toGiocatore(muovimenti);
                 }
