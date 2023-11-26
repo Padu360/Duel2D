@@ -24,7 +24,10 @@ namespace Duel2D
         public giocatore avversario { get; set; }
         public double countSparo;
         public double countMovimento;
+        public int incrementoSalto = 0;
+        public double countSalto;
         public bool salto = false;
+        public int versoSalto = 0;
         public double countInvio;
         public string uInvio = "";
 
@@ -81,6 +84,48 @@ namespace Duel2D
                 }
             }
 
+
+            if (salto == true)       //probabilmente c'è un modo migliore per gestire l'incremento e decremento del salto
+            {
+                countSalto += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (countSalto >= 20)
+                {
+                    if (versoSalto == 0)
+                    {
+                        if (incrementoSalto < 22)
+                        {
+                            giocatoreTmp.y = giocatoreTmp.y - 4;
+                            incrementoSalto++;
+                        }
+                        else
+                        {
+                            incrementoSalto = 0;
+                            versoSalto = 1;
+                        }
+                    }
+                    if (versoSalto == 1)
+                    {
+                        if (incrementoSalto < 22)
+                        {
+                            giocatoreTmp.y = giocatoreTmp.y + 4;
+                            incrementoSalto++;
+                        }
+                        else
+                        {
+                            incrementoSalto = 0;
+                            versoSalto = 0;
+                            salto = false;
+                            if (aGiocatore.verso.Equals("D"))
+                                aGiocatore.azione = 2;
+                            if (aGiocatore.verso.Equals("S"))
+                                aGiocatore.azione = 3;
+                        }
+                    }
+                    countSalto = 0;
+                }
+            }
+
+
             if(salto != true)
             {
                 if (keyboardState.IsKeyDown(Keys.Space))
@@ -90,12 +135,6 @@ namespace Duel2D
                     if (aGiocatore.verso.Equals("S"))
                         aGiocatore.azione = 7;
                     salto = true;
-                    /*
-                    giocatoreTmp.x = giocatoreTmp.x + 2;
-                    aGiocatore.azione = 2;
-                    aGiocatore.verso = "D";
-                    giocatoreTmp.comando = "muovi";
-                    */
                 }
             }
 
