@@ -32,11 +32,11 @@ namespace Duel2D
         public string uInvio = "";
 
 
-        public partita(tcpClass tmp)        
+        public partita(tcpClass tmp)
         {
-            giocatore = new giocatore("andre", 1);
-            giocatoreTmp = new giocatore("andre", 1);
-            avversario = new giocatore("nemico", 2);
+            giocatore = new giocatore();
+            giocatoreTmp = new giocatore();
+            avversario = new giocatore();
             aGiocatore = new Animazioni();
             aAvversario = new Animazioni();
             gestProiettili = new Proiettili();
@@ -81,7 +81,7 @@ namespace Duel2D
                         aGiocatore.azione = 2;
                         aGiocatore.verso = "D";
                         giocatoreTmp.comando = "muovi";
-                    }                    
+                    }
                 }
             }
 
@@ -127,7 +127,7 @@ namespace Duel2D
             }
 
 
-            if(salto != true)
+            if (salto != true)
             {
                 if (keyboardState.IsKeyDown(Keys.Space))
                 {
@@ -151,9 +151,9 @@ namespace Duel2D
                 }
                 countSparo = 0;
             }
-           
 
 
+            giocatoreTmp.comando = aGiocatore.azione.ToString();
             string msgInvio = giocatoreTmp.toCsv();
             if (msgInvio.Equals(uInvio))        //questa si occupa di gestire quando il giocatore si trova in idle
             {
@@ -181,13 +181,14 @@ namespace Duel2D
             if (!muovimenti.Equals("null"))
             {
                 vet = muovimenti.Split(";");
-                if (vet[0] == giocatore.nome)
+                if (vet[0] == giocatore.nome && vet[0] == giocatoreTmp.nome)
                 {
                     giocatore.toGiocatore(muovimenti);
                 }
                 if (vet[0] == avversario.nome)
                 {
                     avversario.toGiocatore(muovimenti);
+                    aAvversario.azione = Int32.Parse(avversario.comando);
                 }
             }
         }
@@ -201,7 +202,7 @@ namespace Duel2D
             aGiocatore.Draw(spriteBatch, giocatore.x, giocatore.y);
             aAvversario.Draw(spriteBatch, avversario.x, avversario.y);
 
-            gestProiettili.Draw(spriteBatch); 
+            gestProiettili.Draw(spriteBatch);
 
             spriteBatch.End();
         }

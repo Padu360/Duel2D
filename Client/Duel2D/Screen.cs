@@ -37,6 +37,8 @@ namespace Duel2D
         private bool sensoOpacita = true;
         public bool inviato = false;
 
+        public double counter = 0;
+
 
         public Screen()
         {
@@ -75,8 +77,35 @@ namespace Duel2D
             clientTcp.Update();                 //connetto al server
             menu.Update(gameTime);              //update del gestore menu
             giocatore = menu.getGiocatore();    //creo giocatore
-            if (menu.isGioca())                 //aspetto gli altri giocatori se ho cliccato su gioca 
-                schermata = 3;                  //mi sposto su schermata caricamento
+                                                // if (menu.isGioca())                 //aspetto gli altri giocatori se ho cliccato su gioca 
+                                                //  schermata = 2;                  //mi sposto su schermata caricamento
+
+
+
+            
+            if (menu.isGioca())
+            {
+                if (inviato == false)
+                {
+                    clientTcp.invia(giocatore.toCsv());         //invio le informazioni al server del giocatore in modo che possa creare una partita
+                    inviato = true;
+                }
+
+                clientTcp.tRicevi();                            //ricevo messaggi dal server
+                string amsg = clientTcp.getMessaggio();
+                if (amsg != rInvio)                             //verifico che il messaggio ricevuto non sia come altri già ricevuti
+                {
+                    avversario = giocatore.toGiocatoreObj(amsg);
+
+                    if (avversario.nome != "")                  //se l'avversario ha ancora il nome di default vuol dire che il server non ha inviato niente e che non devo avviare la partita
+                    {
+                        game.giocatoreTmp = giocatore;
+                        game.avversario = avversario;
+                        schermata = 3;
+                    }
+                }
+                rInvio = amsg;
+            }
         }
 
         public void updateCaricamento(GameTime gameTime)    //update per gestire la schermata di caricamento

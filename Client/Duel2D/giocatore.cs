@@ -21,7 +21,7 @@ namespace Duel2D
             this.x = 0;
             this.y = 640;
             this.hp = 100;
-            this.comando = "muovi";
+            this.comando = "0";
         }
 
         public giocatore(string nome, int nTexture)
@@ -31,7 +31,7 @@ namespace Duel2D
             this.x = 0;
             this.y = 640;
             this.hp = 100;
-            this.comando = "muovi";
+            this.comando = "0";
         }
 
         public giocatore(string nome, int x, int y, string comando)
