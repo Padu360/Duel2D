@@ -32,7 +32,7 @@ namespace Duel2D
         public string uInvio = "";
 
 
-        public partita(tcpClass tmp)
+        public partita(tcpClass tmp)        
         {
             giocatore = new giocatore("andre", 1);
             giocatoreTmp = new giocatore("andre", 1);
@@ -43,7 +43,7 @@ namespace Duel2D
             clientTcp = tmp;
         }
 
-        public void Carica(Microsoft.Xna.Framework.Content.ContentManager content)
+        public void Carica(Microsoft.Xna.Framework.Content.ContentManager content)  //carico tutte le texture e animazioni necessarie
         {
             sGioco = content.Load<Texture2D>("sGioco");
             gestProiettili.carica(content);
@@ -52,16 +52,17 @@ namespace Duel2D
             aAvversario.carica(content);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)       //update che si occupa dei movimenti, ricevi e invia messaggi, setta posizioni ecc
         {
             avversario.x = 500;
             KeyboardState keyboardState = Keyboard.GetState();
 
+            //gestori animazioni dei proiettili, giocatore e avversario
             gestProiettili.Update(gameTime, aAvversario.entita);
             aGiocatore.Update(gameTime);
             aAvversario.Update(gameTime);
 
-
+            //parte che si occupa del muovimento su asse x con tasti D e S del giocatore
             countMovimento += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (countMovimento >= 80)
             {
@@ -84,7 +85,7 @@ namespace Duel2D
                 }
             }
 
-
+            //parte che si occupa del salto
             if (salto == true)       //probabilmente c'è un modo migliore per gestire l'incremento e decremento del salto
             {
                 countSalto += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -137,9 +138,10 @@ namespace Duel2D
                     salto = true;
                 }
             }
+            //fine parte che si occupa del salto
 
 
-
+            //parte che si occupa di gestire la lista dei proiettili del giocatore
             countSparo += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (countSparo >= 250)      //aggiungo i proiettili alla lista
             {
@@ -153,7 +155,7 @@ namespace Duel2D
 
 
             string msgInvio = giocatoreTmp.toCsv();
-            if (msgInvio.Equals(uInvio))
+            if (msgInvio.Equals(uInvio))        //questa si occupa di gestire quando il giocatore si trova in idle
             {
                 if (aGiocatore.azione != 4 && aGiocatore.azione != 5 && aGiocatore.azione != 6 && aGiocatore.azione != 7)
                 {
@@ -166,14 +168,14 @@ namespace Duel2D
 
 
             countInvio += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (!uInvio.Equals(msgInvio))
+            if (!uInvio.Equals(msgInvio))       //invio il messaggio, se è differente da quello precedente, in quanto se non cambia nulla è inutile intasare la banda e il server
             {
                 clientTcp.invia(msgInvio);
                 countInvio = 0;
             }
             uInvio = msgInvio;
 
-            clientTcp.tRicevi();
+            clientTcp.tRicevi();        //parte che si occupa di ricevere i messaggi e smistarli
             string muovimenti = clientTcp.getMessaggio();
             string[] vet;
             if (!muovimenti.Equals("null"))
@@ -190,7 +192,7 @@ namespace Duel2D
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)       //parte che si occupa di disegnare il tutto
         {
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 

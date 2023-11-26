@@ -12,6 +12,7 @@ namespace Duel2D
 {
     internal class inputNome
     {
+        //asset per la casella di testo e oggetti tmp
         KeyboardState letteraPrecedente;
         public Texture2D sNome { get; set; }
         public Texture2D sNomeVuota { get; set; }
@@ -24,20 +25,21 @@ namespace Duel2D
             nome = "";
         }
 
-        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
+        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)      //carico le texture
         {
             sNome = content.Load<Texture2D>("nome2");
             sNomeVuota = content.Load<Texture2D>("nomeVuoto");
             fAll = content.Load<SpriteFont>("fontNome");
         }
 
-        public void Update()
+        public void Update()        //update che gestisce animazione cursore su casella di testo e inserimento testo
         {
             KeyboardState state = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
             int x = mouseState.X;
             int y = mouseState.Y;
 
+            //-------------------parte che si occupa delle animazioni della casella-------------------
             if ((x >= 480 && x <= 720) && (y >= 120 && y <= 205))
             {
                 if(statoCasella != 2 && statoCasella != 3) 
@@ -54,8 +56,10 @@ namespace Duel2D
                 if (mouseState.LeftButton == ButtonState.Pressed && !isSetName())
                     statoCasella = 0;
             }
+            //---------------------------------------------------------------------------------------
 
-            if(statoCasella == 2)
+            //----------------------parte che si occupa di inserire il testo nella casella-----------
+            if (statoCasella == 2)
             {
                 Keys[] lettere = state.GetPressedKeys();
                 foreach (Keys key in lettere)
@@ -71,9 +75,10 @@ namespace Duel2D
 
                 letteraPrecedente = state;
             }
+            //---------------------------------------------------------------------------------------
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch) //disegno le varie animazioni della casella di testo e scrivo il nome
         {
             if(statoCasella == 0)
             {
@@ -92,12 +97,12 @@ namespace Duel2D
             }
         }
 
-        public string getNome()
+        public string getNome()     //per ottenere il nome
         {
             return nome;
         }
 
-        public bool isSetName()
+        public bool isSetName()     //per vedere se è stato impostato un nome
         {
             if (nome != "")
                 return true;

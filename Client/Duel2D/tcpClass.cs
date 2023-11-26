@@ -15,16 +15,14 @@ namespace Duel2D
 {
     public class tcpClass
     {
-        public Texture2D serveron { get; set; }
-        public Texture2D serveroff { get; set; }
+        public Texture2D serveron { get; set; }     //nella classe tcp sono presenti delle texture perchè nella schermata menu/home è presente un icona in alto a sinistra
+        public Texture2D serveroff { get; set; }    //per vedere se si è connessi al server
 
         private static TcpClient client;
         private static NetworkStream stream;
-        private static bool isRunning = true;
         private string ipAdress;
         private int port;
-        private string msg = "ciao";
-        private bool connection = false;
+        private bool connection = false;            
         private bool t = false;
         private bool nuovo = false;
         private bool ricevendo = false;
@@ -37,7 +35,7 @@ namespace Duel2D
             this.port = port;
         }
 
-        public void Update()
+        public void Update()    //per connettersi al server all'inzio tramite l'uso dei thread (per non stoppare il menu)
         {
             if (!connection && !t)
             {
@@ -47,19 +45,19 @@ namespace Duel2D
             }
         }
 
-        private void ConnessioneServer()
+        private void ConnessioneServer()    //richiamo questa funzione nel thread che chiama un'altra funzione che restituisce un bool
         {
             connection = this.connettiServer();
-            if (!connection) { t = false; }
+            if (!connection) { t = false; } //in si è stabilita la connessione non c'è più bisogno che io cerchi di connettermi al server
         }
 
-        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
+        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)      //carico texture status server
         {
             serveron = content.Load<Texture2D>("serverOn");
             serveroff = content.Load<Texture2D>("serverOff");
         }
 
-        public void DrawStatus(SpriteBatch spriteBatch)
+        public void DrawStatus(SpriteBatch spriteBatch)     //disegno lo status 
         {
             if (connection)
                 spriteBatch.Draw(serveron, new Rectangle(7, 1, 93, 38), Color.White);
@@ -67,7 +65,7 @@ namespace Duel2D
                 spriteBatch.Draw(serveroff, new Rectangle(7, 1, 93, 38), Color.White);
         }
 
-        public bool connettiServer()
+        public bool connettiServer()        //funzione per collegare il client al server la prima volta
         {
             try
             {
@@ -112,14 +110,9 @@ namespace Duel2D
             }
         }
 
-        public void sRicevi()   
+        public string getMessaggio() //siccome usando i thread non posso ritornare una stringa, salvo il messaggio ottenuto in una variabile della classe
         {
-
-        }
-
-        public string getMessaggio()
-        {
-            if (nuovo == true)
+            if (nuovo == true)  //ottengo il messaggio solo se è arrivato veramente e non è un messaggio vecchio
             {
                 nuovo = false;
                 return msgRicevuto;
@@ -127,7 +120,7 @@ namespace Duel2D
             return "";
         }
 
-        public void tRicevi()
+        public void tRicevi()       //funzione che avvia il thread della ricevi
         {
             if (ricevendo == false)
             {
@@ -136,7 +129,7 @@ namespace Duel2D
             }
         }
 
-        public void invia(string msg)
+        public void invia(string msg)       //funzione che invia i dati
         {
             try
             {
@@ -149,7 +142,7 @@ namespace Duel2D
             }
         }
 
-        public bool isRicevendo()
+        public bool isRicevendo()       //per vedere se sta ricevendo, da usare nelle altre classi
         {
             return ricevendo;
         }

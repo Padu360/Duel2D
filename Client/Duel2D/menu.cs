@@ -12,6 +12,7 @@ namespace Duel2D
 {
     internal class menu
     {
+        //asset per la schermata di menu e oggetti tmp come giocatore
         public inputNome inputNome { get; set; }
         public giocatore giocatore { get; set; }
         public animazione soldato1 { get; set; }
@@ -33,7 +34,7 @@ namespace Duel2D
             inputNome = new inputNome();
         }
 
-        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)
+        public void carica(Microsoft.Xna.Framework.Content.ContentManager content)      //carico tutte le texture e animazioni
         {
             inputNome.carica(content);
             btnNormale = content.Load<Texture2D>("giocaBase");
@@ -47,7 +48,7 @@ namespace Duel2D
             soldato2 = new animazione(tso2, 1, 4, 10, 150);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)       //update che si occupa di gestire la casella testo, tasto gioca e tasti seleziona skin
         {
             inputNome.Update();
             MouseState mouseState = Mouse.GetState();
@@ -107,15 +108,16 @@ namespace Duel2D
             //--------------------------------------------------------------
         }
 
-        public void DrawMenu(SpriteBatch spriteBatch)
+        public void DrawMenu(SpriteBatch spriteBatch)       //disegno gli asset che mi servono
         {
-            inputNome.Draw(spriteBatch);
+            inputNome.Draw(spriteBatch);    //casella di testo
 
 
-            //draw tipi giocatori
+            //disegno i pulsanti per selezionare giocatori
             spriteBatch.Draw(cLeft, new Rectangle(420, 450, 80, 80), Color.White);
             spriteBatch.Draw(cRight, new Rectangle(690, 450, 80, 80), Color.White);
 
+            //disegno i giocatori
             if (selezioneSoldato == 0)
                 soldato1.Draw(spriteBatch, new Vector2(445, 295), new Rectangle());
             if (selezioneSoldato == 1)
@@ -133,12 +135,12 @@ namespace Duel2D
             }
         }
 
-        public giocatore getGiocatore()
+        public giocatore getGiocatore()     //per ottenere il giocatore 
         {
             return new giocatore(inputNome.getNome(), selezioneSoldato);
         }
 
-        public bool isGioca()
+        public bool isGioca()       //se può avviare il game
         {
             return gioca;
         }

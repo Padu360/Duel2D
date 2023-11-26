@@ -117,7 +117,7 @@ namespace Duel2D
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, int x, int y) //in base alla azione che svolge disegno la texture
+        public void Draw(SpriteBatch spriteBatch, int x, int y) //in base alla azione che svolge disegno l'animazione
         {
             if (azione == 0)
                 entita = idle.Draw(spriteBatch, new Vector2(x, y), entita);

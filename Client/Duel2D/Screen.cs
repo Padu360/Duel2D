@@ -14,20 +14,23 @@ namespace Duel2D
 {
     internal class Screen
     {
-        public int schermata = 0;
+        public int schermata = 0;                       //per decidere in che schermata essere
+        //asset necessari per le schermate e font
         public Texture2D sIniziale { get; set; }
         public Texture2D sMenu { get; set; }
         public Texture2D sCaricamento { get; set; }
         public Texture2D ruotaCaricamento { get; set; }
+        public animazione caricamento { get; set; }
         public SpriteFont fAll { get; set; }
 
+        //oggetti che mi servono 
         public tcpClass clientTcp { get; set; }
         public menu menu { get; set; }
         public partita game { get; set; }
 
+        //oggetti temporanei del giocatore e avversario
         public giocatore giocatore { get; set; }
         public giocatore avversario { get; set; }
-        public animazione caricamento { get; set; }
 
         public string rInvio = "";
         private float opacitaTI = 0.1f;
@@ -81,19 +84,19 @@ namespace Duel2D
             caricamento.Update(gameTime);
 
             
-            if (inviato == false)
+            if (inviato == false)                           
             {
-                clientTcp.invia(giocatore.toCsv());
+                clientTcp.invia(giocatore.toCsv());         //invio le informazioni al server del giocatore in modo che possa creare una partita
                 inviato = true;
             }
             
-            clientTcp.tRicevi();
+            clientTcp.tRicevi();                            //ricevo messaggi dal server
             string amsg = clientTcp.getMessaggio();
-            if (amsg != rInvio)
+            if (amsg != rInvio)                             //verifico che il messaggio ricevuto non sia come altri già ricevuti
             {
                 avversario = giocatore.toGiocatoreObj(amsg);
 
-                if (rInvio != "")
+                if (avversario.nome != "")                  //se l'avversario ha ancora il nome di default vuol dire che il server non ha inviato niente e che non devo avviare la partita
                 {
                     game.giocatore = giocatore;
                     game.avversario = avversario;
