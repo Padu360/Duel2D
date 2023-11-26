@@ -21,36 +21,11 @@ public class ThreadConnessione extends Thread {
             e.printStackTrace();
         }
 
-        // Setta parametri giocatore ricevuti dal client 1
-        Messaggio msg;
-        try {
-            msg = new Messaggio(server.ricevi(1));
-            System.out.println(msg.messaggio);
-        } catch (IOException e) {
+        ThreadSettaGiocatori t1 = new ThreadSettaGiocatori(server, giocatore1, 1);
+        ThreadSettaGiocatori t2 = new ThreadSettaGiocatori(server, giocatore2, 2);
 
-            e.printStackTrace();
-            return;
-        }
-        msg.Splitta();
-        this.giocatore1 = new Giocatore(msg.nome, Integer.parseInt(msg.x),
-                Integer.parseInt(msg.y));
-
-        server.invia(msg.toCsv(), 1);
-
-        // Setta parametri giocatore ricevuti dal client 2
-        try {
-            msg = new Messaggio(server.ricevi(2));
-            System.out.println(msg.messaggio);
-        } catch (IOException e) {
-
-            e.printStackTrace();
-            return;
-        }
-        msg.Splitta();
-        this.giocatore2 = new Giocatore(msg.nome, Integer.parseInt(msg.x),
-                Integer.parseInt(msg.y));
-
-        server.invia(msg.toCsv(), 2);
+        t1.start();
+        t2.start();
 
     }
 }
