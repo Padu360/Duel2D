@@ -4,30 +4,30 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/caricamento.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/cLeft.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/cRight.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/fAll.spritefont</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/fontNome.spritefont</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/giocaBase.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/giocaClick.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/nome2.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/nomeVuoto.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/proiettile.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s1corre.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s1idle.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s1salta.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s1spara.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s2corre.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s2idle.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s2salta.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/s2spara.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/sCaricamento.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/serverOff.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/serverOn.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/sGioco.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/sIniziale.png</File>
-    <File>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/sMenu.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/caricamento.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/cLeft.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/cRight.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/fAll.spritefont</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/fontNome.spritefont</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/giocaBase.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/giocaClick.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/nome2.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/nomeVuoto.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/proiettile.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s1corre.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s1idle.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s1salta.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s1spara.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s2corre.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s2idle.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s2salta.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/s2spara.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/sCaricamento.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/serverOff.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/serverOn.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/sGioco.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/sIniziale.png</File>
+    <File>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/sMenu.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

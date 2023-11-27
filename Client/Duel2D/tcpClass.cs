@@ -22,7 +22,7 @@ namespace Duel2D
         private static NetworkStream stream;
         private string ipAdress;
         private int port;
-        private bool connection = false;            
+        public bool connection = false;            
         private bool t = false;
         private bool nuovo = false;
         private bool ricevendo = false;

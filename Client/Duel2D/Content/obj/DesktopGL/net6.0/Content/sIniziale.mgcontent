@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/sIniziale.png</SourceFile>
-  <SourceTime>2023-11-22T21:37:30.9226848+01:00</SourceTime>
-  <DestFile>C:/Users/Andre/Desktop/gioco3/Client/Duel2D/Content/bin/DesktopGL/Content/sIniziale.xnb</DestFile>
-  <DestTime>2023-11-26T22:34:28.3713315+01:00</DestTime>
+  <SourceFile>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/sIniziale.png</SourceFile>
+  <SourceTime>2023-11-27T11:16:11.7195551+01:00</SourceTime>
+  <DestFile>D:/colzani_andrea/duel2d/Duel2D/Client/Duel2D/Content/bin/DesktopGL/Content/sIniziale.xnb</DestFile>
+  <DestTime>2023-11-27T11:18:02.6346825+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
