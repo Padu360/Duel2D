@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2023-11-28T17:49:25.380Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="WPDT52eNsgS4Z-06V_ui" version="22.1.4" type="google">
+  <diagram name="Page-1" id="-pguzrtCS5gW9YjcOG4l">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="xMD9nZeg61SSIegEQI4G-1" value="CLIENT&lt;br&gt;&lt;br&gt;avvio schermata inizio&lt;br&gt;avvio schermata menu&lt;br&gt;avvio comunicazione con server&lt;br&gt;selezione nome e skin&lt;br&gt;invio richiesta per partita&lt;br&gt;avvio modalità partita&lt;br&gt;scambio dati con server" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="180" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="xMD9nZeg61SSIegEQI4G-2" value="SERVER&lt;br&gt;&lt;br&gt;avvio comunicazione con client&lt;br&gt;ricevo dati primo giocatore&lt;br&gt;ricevo dati secondo giocatore&lt;br&gt;avvio partita&lt;br&gt;scambio dati tra i client" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="180" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="Moug7PH4dTR2n7bGxpzi-1" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="xMD9nZeg61SSIegEQI4G-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="199.78" as="sourcePoint" />
+            <mxPoint x="510" y="199.78" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
