@@ -22,14 +22,14 @@ per renderlo più comprensibile a tutti ecco il sequence diagram UML di come avv
 <img src="docs/uml/client server.drawio.png">
 
 ## Le schermate del nostro gioco!
-schermata d'avvio del gioco
+schermata d'avvio del gioco  
 <img src="docs/schermate/avvio.png" width=360 height=240>
 
-schermata di menu, con selezione nome e skin
+schermata di menu, con selezione nome e skin  
 <img src="docs/schermate/menu.png" width=360 height=240>
 
-schermata di caricamento in attesa di giocatori
+schermata di caricamento in attesa di giocatori  
 <img src="docs/schermate/caricamento.png" width=360 height=240>
 
-schermata del gioco durante la battaglia
+schermata del gioco durante la battaglia  
 <img src="docs/schermate/gioco.png" width=360 height=240>
